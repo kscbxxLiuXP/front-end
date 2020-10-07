@@ -1,0 +1,37 @@
+.container{
+    padding: 5px 0;
+    height:110px;
+    width: 100%;
+    display: flex;
+}
+.icon{
+    border-radius: 8px;
+}
+.operator{
+
+    padding:30px 0;
+    position: absolute;
+    right: 0px;
+    display: flex;
+}
+
+.videoinfo{
+    margin-left: 20px;
+
+}
+.title{
+    font-size: 16px;
+
+    color:black;
+}
+.title-wrapper{
+    margin-bottom: 20px;
+}
+.time{
+    margin-bottom: 15px;
+}
+.container-bottom{
+    display: flex;
+    bottom:0px;
+    height: 20px;
+}

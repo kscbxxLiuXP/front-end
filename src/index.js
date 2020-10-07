@@ -1,17 +1,21 @@
+import '@babel/polyfill'
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
+import registerServiceWorker from './registerServiceWorker';
+import {HashRouter} from 'react-router-dom'
+import { Provider} from 'mobx-react'
+import store from './store'
 
+//打包时，用的HashRouter并加上了basename，因为放在服务器的二级目录下
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+  <HashRouter>
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+      <Provider {...store}>
+        <App/>
+      </Provider>
+
+  </HashRouter>,
+  document.getElementById('root'));
+registerServiceWorker();
