@@ -85,8 +85,6 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "/app/static/build",
-  "proxy": "http://127.0.0.1:5000",
   "jest": {
     "roots": [
       "<rootDir>/src"
@@ -141,5 +139,7 @@
     "presets": [
       "react-app"
     ]
-  }
+  },
+  "homepage": "/app/static/build",
+  "proxy": "http://127.0.0.1:5000"
 }
