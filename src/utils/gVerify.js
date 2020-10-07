@@ -107,9 +107,9 @@ GVerify.prototype = {
 
     /**验证验证码**/
     validate: function (code) {
-        var code = code.toLowerCase();
+        var codel = code.toLowerCase();
         var v_code = this.options.code.toLowerCase();
-        if (code === v_code) {
+        if (codel === v_code) {
             return true;
         } else {
             // this.refresh();

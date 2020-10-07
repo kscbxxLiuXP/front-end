@@ -9,7 +9,7 @@ import cookie from "react-cookies";
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
 import Clock from "react-clock";
-
+import appStore from "../../store/appStore";
 const {Text} = Typography;
 const logo="\n" +
     " _   _ _     _           ______     _            _   \n" +
@@ -21,7 +21,7 @@ const logo="\n" +
     "                                                     \n" +
     "                                                     \n"
 //withRouter一定要写在前面，不然路由变化不会反映到props中去
-@withRouter @inject('appStore') @observer
+@withRouter  @observer
 class HeaderBar extends React.Component {
     state = {
         icon: 'arrows-alt',
@@ -106,13 +106,13 @@ class HeaderBar extends React.Component {
         }
     }
     logout = () => {
-        this.props.appStore.toggleLogin(false)
+        appStore.toggleLogin(false)
         this.props.history.push('/index')
     }
 
     render() {
         const {icon, count, visible, avatar} = this.state
-        const {appStore, collapsed, location} = this.props
+        const { collapsed, location} = this.props
         const notLogin = (
             <div>
                 <Link to={{pathname: '/login', state: {from: location}}}

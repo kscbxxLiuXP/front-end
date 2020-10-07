@@ -5,7 +5,7 @@ import {inject} from "mobx-react";
 
 const {Step} = Steps
 const { Paragraph, Text } = Typography;
-@withRouter @inject('appStore')
+@withRouter
 class DetectResultCard extends React.Component {
 
     getResult(state) {

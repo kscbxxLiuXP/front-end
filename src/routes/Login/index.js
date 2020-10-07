@@ -12,6 +12,8 @@ import HttpUtil from "../../utils/HttpUtil";
 import ApiUtil from "../../utils/ApiUtil";
 import md5 from "md5";
 import '../../Home/css/antMotionStyle.css'
+import appStore from "../../store/appStore";
+
 const {Content,Footer} = Layout;
 
 let isMobile;
@@ -20,7 +22,7 @@ enquireScreen((b) => {
 });
 const {location = {}} = typeof window !== 'undefined' ? window : {};
 
-@Form.create() @withRouter @inject('appStore') @observer
+@Form.create() @withRouter  @observer
 class Login extends React.Component {
     constructor(props) {
         super(props);
@@ -77,7 +79,7 @@ class Login extends React.Component {
                 }
 
 
-                const users = this.props.appStore.users
+                const users = appStore.users
                 console.log(users)
 
                 // 检测用户名是否存在
@@ -94,7 +96,7 @@ class Login extends React.Component {
                                             if (re.code === 1) {
                                                 this.setState({check: 1})
                                                 message.success('认证成功');
-                                                this.props.appStore.toggleLogin(true, {
+                                                appStore.toggleLogin(true, {
                                                     username: values.username,
                                                     admined: re.admined
                                                 })
