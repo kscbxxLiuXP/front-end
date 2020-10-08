@@ -1,80 +1,124 @@
-## 基于React+antd实现后台模板
-自己利用业余时间，基于React+antd写了一个后台管理模板。主要是熟悉antd组件和React，页面主要还是展示页面,比较简单不涉及后台交互。
+## 基于深度学习和大数据的短视频版权检测平台-前端项目
 
-github地址：[基于React+antd实现后台模板](https://github.com/z-9527/react-admin-master)  
-预览地址：[预览地址](https://z-9527.github.io/react-admin-master/)
-<br/>
+### 写在前面
 
-项目重构地址：[react+koa实现登陆、聊天、留言板功能后台](https://github.com/z-9527/admin)  
-重构预览地址：[重构预览地址](http://47.99.130.140/admin/)
+本项目是东北大学的大创项目的**前端代码**
 
-2019.3.19更新   
-今天回顾了一下项目，发现组件写的有问题，公共组件中不应该写业务逻辑，业务逻辑应该通过props或传递事件来实现；或者再用容器组件封装。  
-webstorm打开项目时占用内存过高，不知道是不是代码的问题。  
-项目的初衷是为了学习和总结，可能前期写的或多或少有些问题，但正是通过解决这些问题才能不断的提升。
-<br/>
+悄咪咪：我们现在是国家级项目哦﻿٩(๑❛ᴗ❛๑)۶
 
-2019.3.7更新    
-登录后浏览器后退按钮可以回到登录页，登录页不登录，通过浏览器的前进又可直接进入前台。
-我在登录页componentWillMount生命周期加了判断，如果已经登录，重定向到前页面（也可以设置退出登录）
-<br/>
+后端项目链接：[后端项目](https://github.com/kscbxxLiuXP/videodetect-back)
 
+### 关于我们
+
+软英最强阵容，不接受反驳：
+
+
+
+<center>
+<img width = "100" src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a1.jpg?raw=true"/>
+</center>
+
+<center>半透明的墙</center>
+<center>没有感情的代码机器</center>
+
+------
+
+<img width = "100" src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a2.jpg?raw=true"/>
+
+<center>Arthas Menethil </center>
+<center>忠实哲学爱好者 </center>
+
+------
+
+<img width = "100"  src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a3.jpg?raw=true"/>
+
+<center>金针小肥猪</center>
+<center>对掰门把手颇有研究 </center>
+
+------
+
+<img width = "100"  src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a4.jpg?raw=true"/>
+
+<center>北风寒</center>
+
+<center>智商达人 </center>
+
+------
+
+<img width = "100" src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a5.jpg?raw=true"/>
+
+<center>北风寒</center>
+
+<center>假沈阳本地人，大创组语文课代表</center>
 
 ### 技术栈
 
- - react
- - antd
- - react-router
- - mobx
- - canvas
- - ES6
- - cookie
+> 其实也没啥技术，就是拼积木，用模板
+>
+> 为了好(装)看(B)，写一下
 
-自己参考了其他优秀的插件，比如[动态打字效果](https://blog.csdn.net/qq_37860930/article/details/80859473)、背景粒子效果、[shuffle（洗牌）](https://github.com/Vestride/Shuffle)，[全屏插件](https://github.com/sindresorhus/screenfull.js)等，自己对有些插件封装成类使用
+- React 16
+- Ant Design 3.x
+- react-router
+- Redux
+- Mobx
 
-所有路由都需要登录才可进入，自己封装了PrivateRoute组件来实现路由认证，登录信息保存在cookie中，原本是保存在store中，但是刷新页面后登录状态丢失，所以就保存在cookie中
-登录背景图太大，使用了[TinyPNG](https://tinypng.com/)进行压缩，并编写了一个loading效果
-<br/>
-
-### 项目目录结构
-
-<img src="https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/111.png?raw=true"/>
-assets----存储静态图片资源和共用icon图标<br/>
-components----存储共用组件<br/>
-routes----业务页面入口和常用模板<br/> 
-store----状态管理<br/>
-utils----工具函数<br/>
-<br/>
-
-### 项目截图
-
-<img src="https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/01.png?raw=true"/>  
-<img src="https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/02.png?raw=true"/>  
-<img src="https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/03.png?raw=true"/>  
-<img src="https://github.com/zhangZhiHao1996/image-store/blob/master/react-admin-master/04.png?raw=true"/>  
-<br/>
+由于一些bug的问题 react和antd的版本都不太高 
 
 ### 问题
 
-整个demo不复杂，主要是熟悉react和路由等，在打包的过程中出现了一点小问题。我打包的文件是放在服务器二级目录下，所以打包的路径要改为相对路径，不能使用绝对路径，我在package.json中添加了homepage:'.'解决了路径问题。然后BrowserRouter加上了 basename=‘二级目录名称’ 属性，结果还是出现js路径错误，我一直以为是webpack打包的问题，找了很久才发现是因为BrowserRouter，将BrowserRouter改为HashRouter就访问正确。  
-使用react-router（v4）时，如果有服务器端的动态支持，建议使用 BrowserRouter，否则建议使用 HashRouter。  
-BrowserRouter和HashRouter其实就是前端路由的两种实现方式，一种是hash和一种是HTML5的history，网上有很介绍。  
-可以参考：[关于react 在打包后：“找不到资源路径”的问题、部署到服务器二级目录 “打开为空白” 的问题](https://blog.csdn.net/Sophie_U/article/details/80006723)
+害，这问题就多的去了
+
+写在这里，以后有时间(不会的)就来修复
+
+- 和后端项目异步交互时会偶尔出现莫名的bug
+- Header右侧的图标 CSS加载异常，一加其他的内容就会格式错误，显示异常，所以保持现有的这几个就挺好
+- 有时候登录验证码输入对的也会提示输入错误
+- 退出登录时，浏览器的console会报error
+
+### 项目截图
+
+首页
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/1.png?raw=true"/>
+
+
+登录
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/2.png?raw=true"/>
+
+DashBoard
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/3.png?raw=true"/>
+
+视频上传
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/4.png?raw=true"/>
+
+审核结果
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/5.png?raw=true"/>
+
+申诉
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/6.png?raw=true"/>
+
+<img src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/7.png?raw=true"/>
+
 <br/>
 
-### 最后
-demo是我断断续续写的，只有下班和周末有时间。写demo的目的主要是熟悉React和react-router以及antd，整个demo中参考了一些其他人的想法，如动画效果等。另外基于vue的个人项目可以看这个[仿制移动端QQ音乐](https://blog.csdn.net/qq_37860930/article/details/80586698)
-<br/>
 
-### 其他个人项目
 
-- [基于vue+vue-router+jsonp+vuex仿制的移动端`QQ音乐`](https://github.com/zhangZhiHao1996/vue-music-master)
-- [基于React-Antd的`后台模板Demo`](https://github.com/zhangZhiHao1996/react-admin-master)
-- [基于原生小程序精仿的`猫眼电影小程序`](https://github.com/zhangZhiHao1996/weapp-movie-master)
+### 写在最后
 
-<br/>
+本项目其实写起来就像一点一点挤牙膏，因为项目是大二开始实现的，当时关于web的知识几乎为0。
 
-`觉得不错的给个star鼓励支持！^_^`
-  //    "start": "node scripts/start.js",
-  //    "build": "node scripts/build.js",
-  //    "test": "node scripts/test.js --env=jsdom",
+中期答辩前，web没学，项目没有进度，当时一度想要放弃，反正大家最后都坚持下来了
+
+未完待续。。。。
+
+感谢我们大创小组成员们一直不断的努力
+
+也感谢大家对这个划水队长的支持
+
+**`觉得不错的给个star鼓励支持！^_^`**
