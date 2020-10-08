@@ -21,6 +21,13 @@ import 'braft-editor/dist/index.css'
 import axios from 'axios'
 import ApiUtil from "../../../utils/ApiUtil";
 import {isAuthenticated} from "../../../utils/Session";
+import {EditorState, convertToRaw} from 'draft-js';
+import {Editor} from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import './style.css'
+
 const {confirm} = Modal
 const {TabPane} = Tabs;
 const {Option} = Select;
@@ -42,27 +49,27 @@ class MessageDemo extends React.Component {
         selectdata: [],
         value: [],
         subject: '',
-
+        preview: false,
         fetching: false,
-        editorState: BraftEditor.createEditorState()
+        editorState: BraftEditor.createEditorState(),
+        editor: EditorState.createEmpty(),
+
+
     }
     handleEditorChange = (editorState) => {
-        this.setState({ editorState })
+        this.setState({editorState})
     }
-
+    onEditorStateChange = (editorState) => {
+        this.setState({
+            editor: editorState,
+        });
+    };
     preview = () => {
-
-        if (window.previewWindow) {
-            window.previewWindow.close()
-        }
-
-        window.previewWindow = window.open()
-        window.previewWindow.document.write(this.buildPreviewHtml())
-        window.previewWindow.document.close()
+        this.setState({preview: true})
 
     }
 
-    buildPreviewHtml () {
+    buildPreviewHtml() {
 
         return `
       <!Doctype html>
@@ -171,12 +178,21 @@ class MessageDemo extends React.Component {
 
     handleSubmit = () => {
         let receivers = this.state.value
+
+        if (this.state.value.length === 0) {
+            Modal.error({title: '请填写收件人！'})
+            return
+        }
+        if (this.state.subject === '') {
+            Modal.error({title: '请填写主题！'})
+            return
+        }
         let msg = {
             mFrom: isAuthenticated(),
             mTo: this.state.value.map((item, index) => {
                 return item.key
             }),
-            content: this.state.editorState.toHTML(),
+            content: draftToHtml(convertToRaw(this.state.editor.getCurrentContent())),
             subject: this.state.subject
         }
         console.log(msg)
@@ -188,20 +204,25 @@ class MessageDemo extends React.Component {
             let result = res.data.code
             if (result === 0) {
                 message.success("发送成功！")
-                this.setState({subject: '', value: []})
+                this.setState({subject: '', value: [], editor: EditorState.createEmpty(),})
+
             } else {
                 message.error("发送失败！")
             }
         })
     }
 
-    componentDidMount() {
+    getData() {
         axios({
             url: ApiUtil.URL_IP + "/api/getMessageList/" + isAuthenticated(),
             method: 'get'
         }).then(res => {
             this.setState({msgData: res.data.data})
         })
+    }
+
+    componentDidMount() {
+        this.getData()
     }
 
     setMessageState(id, state) {
@@ -256,20 +277,28 @@ class MessageDemo extends React.Component {
                 title: '发件人',
                 dataIndex: 'mFrom',
                 key: 'mFrom',
-                render: text => <a>{text}</a>,
                 width: 100,
+                render: (text, record) => <span>{
+                    record.readed === 0 ? <b>{text}</b> : <span>{text}</span>
+                }</span>,
                 ellipsis: true,
             },
             {
                 title: '主题',
                 dataIndex: 'subject',
                 key: 'subject',
+                render: (text, record) => <span>{
+                    record.readed === 0 ? <b>{text}</b> : <span>{text}</span>
+                }</span>,
             },
             {
                 title: '时间',
                 dataIndex: 'time',
                 key: 'time',
-                width: 200
+                width: 200,
+                render: (text, record) => <span>{
+                    record.readed === 0 ? <b>{text}</b> : <span>{text}</span>
+                }</span>,
             },
             {
                 title: '状态',
@@ -277,7 +306,7 @@ class MessageDemo extends React.Component {
                 dataIndex: 'readed',
                 render: tag => (
                     <span>
-                {tag == 0 ? <Tag color='red'>未读</Tag> : <Tag color='green'>已读</Tag>}
+                {tag === 0 ? <Tag color='red'>未读</Tag> : <Tag color='green'>已读</Tag>}
       </span>
                 ),
                 width: 75
@@ -329,7 +358,7 @@ class MessageDemo extends React.Component {
         ];
 
 
-        const {fetching, selectdata, value} = this.state;
+        const {fetching, selectdata, value, editor} = this.state;
         //富文本编辑器设置
 
         const excludeControls = [
@@ -368,7 +397,9 @@ class MessageDemo extends React.Component {
                         marginBottom: "50px",
                         padding: "20px"
                     }}>
-                    <Tabs defaultActiveKey="1">
+                    <Tabs defaultActiveKey="1" onTabClick={() => {
+                        this.getData()
+                    }}>
                         <TabPane tab="收件箱" key="1">
                             <Table columns={columns}
                                    dataSource={this.state.msgData} size='middle'/>
@@ -382,6 +413,7 @@ class MessageDemo extends React.Component {
                                         labelInValue
                                         value={value}
                                         placeholder="选择用户"
+                                        loading={fetching}
                                         notFoundContent={fetching ? <Spin size="small"/> : null}
                                         filterOption={false}
                                         onSearch={this.fetchUser}
@@ -401,15 +433,27 @@ class MessageDemo extends React.Component {
                                 <div style={{marginTop: "20px"}}>
                                     <div style={{whiteSpace: "pre"}}>正 文：</div>
                                     <div className="editor-wrapper">
-                                        <BraftEditor
-                                            onChange={this.handleEditorChange}
-                                            excludeControls={excludeControls}
-                                            extendControls={extendControls}
-                                            contentStyle={{height: 400}}
+                                        <Editor
+                                            editorState={editor}
+                                            wrapperClassName="demo-wrapper"
+                                            editorClassName="editor-class"
+                                            localization={{
+                                                locale: 'zh',
+                                            }}
+                                            onEditorStateChange={this.onEditorStateChange}
                                         />
+
                                     </div>
+                                    <textarea
+                                        disabled
+                                        style={{width:'100%' }}
+                                        value={draftToHtml(convertToRaw(editor.getCurrentContent()))}
+                                    />
+
                                 </div>
-                                <Button type="primary" onClick={this.handleSubmit}>提交</Button>
+
+                                <Button type="primary" style={{marginTop: 20}} onClick={this.preview}>预览</Button>
+                                <Button type="primary" style={{marginLeft: 20}} onClick={this.handleSubmit}>提交</Button>
                             </div>
 
                         </TabPane>
@@ -418,15 +462,49 @@ class MessageDemo extends React.Component {
 
                 </div>
                 <Drawer
-                    title={this.state.currentMessage.subject}
+                    title={`来自${this.state.currentMessage.mFrom}的消息`}
                     placement='right'
                     width={640}
                     closable={false}
                     onClose={this.onClose}
                     visible={this.state.visible}
+
                 >
-                    <div dangerouslySetInnerHTML={{__html: this.state.currentMessage.content}}/>
+                    <div style={{
+                        width: '100%',
+                        textAlign: "center",
+                        fontSize: 18,
+                        fontWeight: "bold"
+                    }}>{this.state.currentMessage.subject}</div>
+                    <div style={{marginTop: 20}} dangerouslySetInnerHTML={{__html: this.state.currentMessage.content}}/>
                 </Drawer>
+                <Modal visible={this.state.preview}
+                       title={'预览'}
+                       onOk={() => this.setState({
+                           preview: false
+                       })}
+                       onCancel={() => this.setState({
+                           preview: false
+                       })}
+                       footer={[
+                           <Button key="submit" type="primary" onClick={() => this.setState({
+                               preview: false
+                           })}>
+                               确认
+                           </Button>,
+                       ]}
+                       width={800}
+
+                >
+                    <div style={{
+                        width: '100%',
+                        textAlign: "center",
+                        fontSize: 20,
+                        fontWeight: "bold"
+                    }}>{this.state.subject}</div>
+                    <div style={{padding: 20, marginBottom: 50}}
+                         dangerouslySetInnerHTML={{__html: draftToHtml(convertToRaw(this.state.editor.getCurrentContent()))}}/>
+                </Modal>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>
         )

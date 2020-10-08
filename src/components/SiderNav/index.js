@@ -63,8 +63,14 @@ class SiderNav extends React.Component {
                 },
                 {
                     title: '问题反馈',
-                    icon: 'question-circle',
+                    icon: 'book',
                     key: '/home/feedback',
+
+                },
+                {
+                    title: '帮助',
+                    icon: 'question-circle',
+                    key: '/home/help',
 
                 },
                 {
@@ -115,8 +121,14 @@ class SiderNav extends React.Component {
                 },
                 {
                     title: '问题反馈',
-                    icon: 'question-circle',
+                    icon: 'book',
                     key: '/home/feedback',
+
+                },
+                {
+                    title: '帮助',
+                    icon: 'question-circle',
+                    key: '/home/help',
 
                 },
                 {

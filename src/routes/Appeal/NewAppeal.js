@@ -116,6 +116,7 @@ class NewAppeal extends React.Component {
                     appeal: ''
                 }
                 appealData.push(r)
+                return 1
             })
             this.setState({videoList: res.data.data, appealData: appealData})
 
@@ -133,6 +134,7 @@ class NewAppeal extends React.Component {
                 }
             })
             item2.selected = b;
+            return 1
         })
         this.setState({appealData: list})
 
@@ -157,6 +159,7 @@ class NewAppeal extends React.Component {
             if (key === item.key) {
                 d = item.appeal
             }
+            return 1
         })
         return d
     }

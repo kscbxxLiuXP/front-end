@@ -7,7 +7,7 @@ import {Col, Form, Input, Row, Button, Layout, notification, Tooltip, message} f
 import GVerify from "../../utils/gVerify";
 import './style.css'
 import {withRouter} from "react-router-dom";
-import {inject, observer} from "mobx-react";
+import { observer} from "mobx-react";
 import HttpUtil from "../../utils/HttpUtil";
 import ApiUtil from "../../utils/ApiUtil";
 import md5 from "md5";
