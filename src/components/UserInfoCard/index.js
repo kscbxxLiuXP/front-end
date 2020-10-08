@@ -3,7 +3,9 @@ import {Avatar, Button, Divider} from "antd";
 import ApiUtil from "../../utils/ApiUtil";
 import axios from "axios";
 import {isAuthenticated} from "../../utils/Session";
+import {withRouter} from "react-router-dom";
 
+@withRouter
 class UserInfoCard extends React.Component {
     state = {
         user: {}
@@ -53,26 +55,27 @@ class UserInfoCard extends React.Component {
                     帮助中心
                 </div>
                 <div style={{float: "right", marginRight: "20px"}}>
-                    <a>更多></a>
+                    <a href='/#/home/help'>更多></a>
                 </div>
             </div>
             <br/>
-            <div style={{marginLeft: "40px", marginTop: "20px"}}>
-                <Button shape="round" icon="download" style={{marginTop: "10px"}}>
-                    Download
+            <div style={{marginLeft: "30px", marginTop: "20px"}}>
+                <Button shape="round" icon="info-circle" style={{marginTop: "10px"}}
+                        onClick={() => this.props.history.push('/home/help/1')}>
+                    如何上传我的视频
                 </Button>
                 <br/>
-                <Button shape="round" icon="download" style={{marginTop: "10px"}}>
-                    Download
+                <Button shape="round" icon="info-circle" style={{marginTop: "10px"}} onClick={() => this.props.history.push('/home/help/2')}>
+                    怎么修改我的账号密码
                 </Button>
-                <br/> <Button shape="round" icon="download" style={{marginTop: "10px"}}>
-                Download
+                <br/> <Button shape="round" icon="info-circle" style={{marginTop: "10px"}} onClick={() => this.props.history.push('/home/help/3')}>
+                如何查看我上传过的视频
             </Button>
-                <br/> <Button shape="round" icon="download" style={{marginTop: "10px"}}>
-                Download
+                <br/> <Button shape="round" icon="info-circle" style={{marginTop: "10px"}} onClick={() => this.props.history.push('/home/help/4')}>
+                我对系统检测的结果有异议
             </Button>
-                <br/> <Button shape="round" icon="download" style={{marginTop: "10px"}}>
-                Download
+                <br/> <Button shape="round" icon="info-circle" style={{marginTop: "10px"}} onClick={() => this.props.history.push('/home/help/5')}>
+                如何申诉
             </Button>
                 <br/>
             </div>
@@ -89,7 +92,7 @@ class UserInfoCard extends React.Component {
                     问题反馈
                 </div>
                 <div style={{float: "right", marginRight: "20px"}}>
-                    <a>反馈></a>
+                    <a href='/#/home/feedback'>反馈></a>
                 </div>
             </div>
             <br/>

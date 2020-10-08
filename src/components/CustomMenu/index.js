@@ -23,7 +23,7 @@ class CustomMenu extends React.Component {
                 break;
             case 5 : //三级目录，要展开两个subMenu
                 this.setState({
-                    selectedKeys: [pathname.substr(0,21)],
+                    selectedKeys: [pathname.substr(0, 21)],
                     openKeys: [rank.slice(0, 3).join('/'), rank.slice(0, 4).join('/')]
                 })
                 break;
@@ -33,12 +33,15 @@ class CustomMenu extends React.Component {
                         selectedKeys: ['/home/content'],
                     })
 
-                }else if(pathname.substr(0, 12) === '/home/appeal'){
+                } else if (pathname.substr(0, 12) === '/home/appeal') {
                     this.setState({
                         selectedKeys: ['/home/appeal'],
                     })
-                }
-                else if (pathname === '/home/appeal/new') {
+                } else if (pathname.substr(0, 10) === '/home/help') {
+                    this.setState({
+                        selectedKeys: ['/home/help'],
+                    })
+                } else if (pathname === '/home/appeal/new') {
                     this.setState({
                         selectedKeys: ['/home/appeal'],
                     })
@@ -61,21 +64,23 @@ class CustomMenu extends React.Component {
                 this.setState({
                     selectedKeys: ['/home/content'],
                 })
-            }
-            else if(pathname.substr(0, 12) === '/home/appeal'){
+            } else if (pathname.substr(0, 12) === '/home/appeal') {
                 this.setState({
                     selectedKeys: ['/home/appeal'],
                 })
-            }else if (pathname === '/home/appeal/new') {
+            } else if (pathname === '/home/appeal/new') {
                 this.setState({
                     selectedKeys: ['/home/appeal'],
                 })
-            }else if(pathname.substr(0,21)==='/home/dbmanage/appeal') {
+            } else if (pathname.substr(0, 21) === '/home/dbmanage/appeal') {
                 this.setState({
                     selectedKeys: ['/home/dbmanage/appeal'],
                 })
-            }
-            else {
+            } else if (pathname.substr(0, 10) === '/home/help') {
+                this.setState({
+                    selectedKeys: ['/home/help'],
+                })
+            } else {
                 this.setState({
                     selectedKeys: [pathname],
                 })

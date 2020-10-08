@@ -37,6 +37,7 @@ const AppealManageDetail = LoadableComponent(() => import('../../routes/DBManage
 
 //帮助组件
 const Help = LoadableComponent(() => import('../../routes/Help/index'))
+const HelpDetail = LoadableComponent(() => import('../../routes/Help/HelpDetail'))
 
 //反馈组件
 const FeedBackDemo = LoadableComponent(() => import('../../routes/Feedback/index'))
@@ -79,6 +80,7 @@ class ContentMain extends React.Component {
                     <PrivateRoute exact path='/home/feedback' component={FeedBackDemo}/>
                     {/*帮助*/}
                     <PrivateRoute exact path='/home/help' component={Help}/>
+                    <PrivateRoute path='/home/help/:id' component={HelpDetail}/>
                     {/*关于*/}
                     <PrivateRoute exact path='/home/about' component={About}/>
 
