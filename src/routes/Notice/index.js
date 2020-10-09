@@ -37,7 +37,7 @@ class NoticeDemo extends React.Component {
         current: 0,
         notices: [],
         visible: false,
-        cNotice:{}
+        cNotice: {}
     }
     animations = getAnimation(animations)
 
@@ -108,13 +108,13 @@ class NoticeDemo extends React.Component {
                         renderItem={item => (
                             <List.Item>
                                 <a className='notice-title'
-                                   onClick={() => this.setState({visible: true,cNotice:item})}>
+                                   onClick={() => this.setState({visible: true, cNotice: item})}>
                                     <span style={{textAlign: "left", fontSize: 16}}>
                                              {item.title}
                                     </span>
                                 </a>
                                 <span style={{float: "right", fontSize: 16}}>
-                                        {item.publisher} 发布于 {item.timeformat}
+                                        {item.publisher} 发布于 {item.time}
                                 </span>
                             </List.Item>
                         )}
@@ -130,18 +130,18 @@ class NoticeDemo extends React.Component {
                            </Button>
                        }
                 >
-                <div style={{fontSize:20,textAlign:"center"}}>
-                    {this.state.cNotice.title}
-                </div>
-                    <div style={{color:"gray",marginTop:20,textAlign:"right"}}>
+                    <div style={{fontSize: 20, textAlign: "center"}}>
+                        {this.state.cNotice.title}
+                    </div>
+                    <div style={{color: "gray", marginTop: 20, textAlign: "right"}}>
                         {this.state.cNotice.publisher}
                     </div>
-                    <div style={{color:"gray",marginTop:10,textAlign:"right"}}>
-                        {this.state.cNotice.timeformat}
+                    <div style={{color: "gray", marginTop: 10, textAlign: "right"}}>
+                        {this.state.cNotice.time}
                     </div>
-                    <div style={{minHeight:400,marginTop:20,fontSize:14}}
+                    <div style={{minHeight: 400, marginTop: 20, fontSize: 14}}
 
-                        dangerouslySetInnerHTML={{__html: this.state.cNotice.content}}/>
+                         dangerouslySetInnerHTML={{__html: this.state.cNotice.content}}/>
                 </Modal>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>

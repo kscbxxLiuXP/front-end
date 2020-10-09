@@ -34,7 +34,7 @@ const UserManage = LoadableComponent(() => import('../../routes/DBManage/userMan
 const VideoManage = LoadableComponent(() => import('../../routes/DBManage/videoManage'))
 const AppealManage = LoadableComponent(() => import('../../routes/DBManage/AppealManage'))
 const AppealManageDetail = LoadableComponent(() => import('../../routes/DBManage/AppealManageDetail'))
-
+const NoticeManage = LoadableComponent(() => import('../../routes/DBManage/NoticeManage'))
 //帮助组件
 const Help = LoadableComponent(() => import('../../routes/Help/index'))
 const HelpDetail = LoadableComponent(() => import('../../routes/Help/HelpDetail'))
@@ -76,6 +76,7 @@ class ContentMain extends React.Component {
                     <PrivateRoute exact path='/home/dbmanage/video' component={VideoManage}/>
                     <PrivateRoute exact path='/home/dbmanage/appeal' component={AppealManage}/>
                     <PrivateRoute path='/home/dbmanage/appeal/:id' component={AppealManageDetail}/>
+                    <PrivateRoute path='/home/dbmanage/notice' component={NoticeManage}/>
                     {/*问题反馈*/}
                     <PrivateRoute exact path='/home/feedback' component={FeedBackDemo}/>
                     {/*帮助*/}
