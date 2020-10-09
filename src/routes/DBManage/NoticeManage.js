@@ -225,7 +225,7 @@ class NoticeManage extends React.Component {
         const {newEditor, editor} = this.state
         return (
             <div>
-                <CustomBreadcrumb arr={['公告']}/>
+                <CustomBreadcrumb arr={['管理','公告管理']}/>
                 <MyCard title={'公告'}>
                     <Button icon='upload' onClick={() => this.setState({newVisible: true})}>发布公告</Button>
                     <Button icon='reload' onClick={() => this.getData()}>刷新</Button>

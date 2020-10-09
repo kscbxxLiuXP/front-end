@@ -60,6 +60,7 @@ class SiderNav extends React.Component {
                         {key: '/home/dbmanage/video', title: '视频库管理', icon: 'video-camera'},
                         {key: '/home/dbmanage/appeal', title: '申诉处理', icon: 'bulb'},
                         {key: '/home/dbmanage/notice', title: '公告管理', icon: 'sound'},
+                        {key: '/home/dbmanage/feedback', title: '反馈处理', icon: 'book'},
                     ]
                 },
                 {
