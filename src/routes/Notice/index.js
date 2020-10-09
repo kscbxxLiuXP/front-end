@@ -1,11 +1,13 @@
 import React from 'react'
-import {BackTop, Card, Carousel} from 'antd'
+import {BackTop, Button, Card, Carousel, List, Modal} from 'antd'
 import CustomBreadcrumb from '../../components/CustomBreadcrumb'
 import './css/style.css'
 import '../../../node_modules/animate.css/animate.css'
 
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
+import draftToHtml from "draftjs-to-html";
+import {convertToRaw} from "draft-js";
 
 const animations = [
     ['bounceInDown', 'bounceInUp'],
@@ -33,7 +35,9 @@ function getAnimation(animations) {
 class NoticeDemo extends React.Component {
     state = {
         current: 0,
-        notices: []
+        notices: [],
+        visible: false,
+        cNotice:{}
     }
     animations = getAnimation(animations)
 
@@ -98,18 +102,47 @@ class NoticeDemo extends React.Component {
                         </div>
                     </Carousel>
                 </Card>
-                <Card>
-                    {this.state.notices.map((notice, index) => {
-                        return (<Card key={index} style={{marginTop: "30px"}} hoverable title={notice.title} extra={
-                            <div style={{whiteSpace: "pre"}}>
-                                {notice.publisher} 发布于 {notice.timeformat}
-                            </div>
-
-                        }>
-                            {notice.content}
-                        </Card>)
-                    })}
+                <Card title='公告'>
+                    <List
+                        dataSource={this.state.notices}
+                        renderItem={item => (
+                            <List.Item>
+                                <a className='notice-title'
+                                   onClick={() => this.setState({visible: true,cNotice:item})}>
+                                    <span style={{textAlign: "left", fontSize: 16}}>
+                                             {item.title}
+                                    </span>
+                                </a>
+                                <span style={{float: "right", fontSize: 16}}>
+                                        {item.publisher} 发布于 {item.timeformat}
+                                </span>
+                            </List.Item>
+                        )}
+                    />
                 </Card>
+                <Modal title='公告' width={800}
+                       visible={this.state.visible}
+                       onOk={() => this.setState({visible: false})}
+                       onCancel={() => this.setState({visible: false})}
+                       footer={
+                           <Button onClick={() => this.setState({visible: false})}>
+                               确定
+                           </Button>
+                       }
+                >
+                <div style={{fontSize:20,textAlign:"center"}}>
+                    {this.state.cNotice.title}
+                </div>
+                    <div style={{color:"gray",marginTop:20,textAlign:"right"}}>
+                        {this.state.cNotice.publisher}
+                    </div>
+                    <div style={{color:"gray",marginTop:10,textAlign:"right"}}>
+                        {this.state.cNotice.timeformat}
+                    </div>
+                    <div style={{minHeight:400,marginTop:20,fontSize:14}}
+
+                        dangerouslySetInnerHTML={{__html: this.state.cNotice.content}}/>
+                </Modal>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>
         )

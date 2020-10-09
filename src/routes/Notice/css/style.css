@@ -82,3 +82,6 @@
 .ant-carousel .slider-item .slider-active{
     display: block;
 }
+.notice-title{
+    color: black;
+}
