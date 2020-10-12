@@ -103,6 +103,14 @@ class Home extends React.Component {
                 categories: ['2011-01', '2011-02', '2011-03', '2011-04',
                     '2011-05', '2011-06'
                 ],
+                labels: {
+                    datetimeFormatter: {
+                        year: 'yyyy',
+                        month: 'MMM \'yy',
+                        day: 'dd MMM',
+                        hour: 'HH:mm'
+                    }
+                }
             },
             legend: {
                 position: 'bottom',
@@ -278,15 +286,17 @@ class Home extends React.Component {
                         horizontal: false,
                     },
                 },
-                // xaxis: {
-                //     type: 'datetime',
-                //     categories: ['12:00:00 01/01/2011 GMT', '13:00:00 01/01/2011 GMT', '14:00:00 01/01/2011 GMT', '15:00:00 01/01/2011 GMT',
-                //         '16:00:00 01/01/2011 GMT', '17:00:00 01/01/2011 GMT'
-                //     ],
-                // },
                 xaxis: {
                     type: 'datetime',
                     categories: dateSequence,
+                    labels: {
+                        datetimeFormatter: {
+                            year: 'yyyy',
+                            month: 'yyyy.MM',
+                            day: 'MM月dd日',
+                            hour: 'HH:mm'
+                        }
+                    }
                 },
                 legend: {
                     position: 'bottom',
