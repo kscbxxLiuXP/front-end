@@ -4,8 +4,8 @@ import LoadableComponent from '../../utils/LoadableComponent'
 import PrivateRoute from '../PrivateRoute'
 
 //首页
-const Home = LoadableComponent(() => import('../../routes/Home/index'))  //参数一定要是函数，否则不会懒加载，只会代码拆分
-
+const Home = LoadableComponent(() => import('../../routes/Home/Home'))  //参数一定要是函数，否则不会懒加载，只会代码拆分
+const Home2=LoadableComponent(() => import('../../routes/Home/index'))
 //公告
 const VerifyNoticeDemo = LoadableComponent(() => import('../../routes/Notice'))
 
@@ -54,6 +54,7 @@ class ContentMain extends React.Component {
                 <Switch>
                     {/*首页*/}
                     <PrivateRoute exact path='/home' component={Home}/>
+                    <PrivateRoute exact path='/home2' component={Home2}/>
                     {/*公告*/}
                     <PrivateRoute exact path='/home/notice' component={VerifyNoticeDemo}/>
                     {/*个人中心*/}

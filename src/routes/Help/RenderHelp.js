@@ -1,6 +1,6 @@
 import React from "react";
 import MyCard from "../../components/MyCard/MyCard";
-import {Divider, Radio, Button} from "antd";
+import {Divider, Radio, Button, BackTop} from "antd";
 import './style.css'
 
 const helpList = [
@@ -150,7 +150,7 @@ class RenderHelp extends React.Component {
                     </div>
                 </div>
 
-
+                <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>
         );
     }
