@@ -1,5 +1,5 @@
 import React from 'react'
-import {BackTop, Button, Card, Col, message, Progress, Result, Row, Skeleton, Typography} from 'antd'
+import {BackTop, Button, Card, Col, message, Progress, Result, Modal, Row, Skeleton, Typography} from 'antd'
 import CustomBreadcrumb from '../../components/CustomBreadcrumb/index'
 
 import ApiUtil from "../../utils/ApiUtil";
@@ -22,7 +22,7 @@ class ContentDetail extends React.Component {
         copyid: '',
         copyurl: '',
         copyinfo: [],
-        history:[],
+        history: [],
     }
 
     videoPreview(state) {
@@ -40,7 +40,33 @@ class ContentDetail extends React.Component {
                 <CustomBreadcrumb arr={['我的创作', id]}/>
                 <Row gutter={20}>
                     <Col span={7}>
+                        <MyCard style={{marginLeft: '20px'}} title={'操作'}>
+                            <Button style={{width: '100%'}} type='danger' onClick={() => {
+                                let _this = this
+                                Modal.confirm({
+                                    title: '您确定要删除这个视频吗？',
+                                    content: '删除后将无法恢复',
+                                    okText: '确定',
+                                    okType: 'danger',
+                                    cancelText: '取消',
+                                    onOk() {
+                                        axios({
+                                            url: ApiUtil.URL_IP + '/api/deleteFile/' + id,
+                                            method: 'get',
+                                        }).then(res => {
+                                            if (res.data.code === 0) {
+                                                message.success('删除成功！')
+                                                window.history.back()
+                                            } else {
+                                                message.error('删除失败，请稍后再试！')
+                                            }
+                                        })
+                                    },
+                                });
+                            }}>删除该视频</Button>
+                        </MyCard>
                         <VideoInfoCard title='信息' loading={this.state.loading} video={this.state.video}/>
+
                     </Col>
                     <Col span={17}>
                         <DetectStep video={this.state.video} his={this.state.history} loading={this.state.loading}/>
@@ -69,7 +95,7 @@ class ContentDetail extends React.Component {
                 video: res.data.data.video,
                 copy: res.data.data.copyinfo,
                 loading: false,
-                history:res.data.data.history,
+                history: res.data.data.history,
             })
         })
     }
