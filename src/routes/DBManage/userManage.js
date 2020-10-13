@@ -642,8 +642,6 @@ class UserManageDemo extends React.Component {
                 <Card style={{marginTop: 10}}>
                     <Button type="primary" icon='plus' onClick={this.createUser.bind(this)}
                             style={{}}>创建用户</Button>
-                    <Button type="danger" icon='delete'
-                            style={{marginLeft: 10}}>删除用户</Button>
                     <Button type="primary" icon='reload'
                             style={{marginLeft: 10}} onClick={()=>{this.getData()}}>刷新</Button>
                     <Spin spinning={this.state.loading} size="large" delay={500}>

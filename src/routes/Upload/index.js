@@ -39,7 +39,7 @@ const props2 = {
             HttpUtil.get(`${ApiUtil.API_FILE_DELETE_BY_MD5}/${info.file.md5}`)
                 .then(
                     re => {
-                        message.info(re.code === 0 ? '文件删除成功' : '文件删除失败');
+                        message.info(re.data.code === 0 ? '文件删除成功' : '文件删除失败');
                     }
                 ).catch(error => {
                 message.error(error.message);

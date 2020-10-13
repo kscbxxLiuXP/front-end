@@ -46,7 +46,7 @@ class Help extends React.Component {
             <div>
                 <CustomBreadcrumb arr={['帮助']}/>
                 <MyCard style={{height: 600}} title='帮助列表'>
-                    <div style={{marginLeft:30,marginTop: "20px"}}>
+                    <div style={{marginLeft:30,marginTop: "40px"}}>
                         {helpList.map((item, index) => {
                             return <div key={item.id}>
                                 <a className='title'

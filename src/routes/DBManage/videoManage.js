@@ -9,6 +9,7 @@ import {
     Input,
     DatePicker,
     Button,
+    Modal,
     Table,
     Drawer,
     Typography, Tag, Tooltip, Switch
@@ -23,6 +24,8 @@ import {formatFileSize, generateVideoID, getfilemd5sum} from "../../utils/utils"
 import {Link} from "react-router-dom";
 import moment from "moment";
 import Highlighter from "react-highlight-words";
+import axios from 'axios'
+
 
 const Dragger = Upload.Dragger;
 
@@ -56,7 +59,7 @@ const props2 = {
             HttpUtil.get(`${ApiUtil.API_FILE_DELETE_BY_MD5}/${info.file.md5}`)
                 .then(
                     re => {
-                        message.info(re.code === 0 ? '文件删除成功' : '文件删除失败');
+                        message.info(re.data.code === 0 ? '文件删除成功' : '文件删除失败');
                     }
                 ).catch(error => {
                 message.error(error.message);
@@ -86,8 +89,10 @@ class VideoManageDemo extends React.Component {
             searchName: '',
             searchSTime: null,
             searchETime: null,
-            searchAuth :"",
-            searchID:'',
+            searchAuth: "",
+            searchID: '',
+            deleteList: [],
+            deleteConfirmVisible: false
 
         }
         this.beforeUpload = this.beforeUpload.bind(this)
@@ -137,7 +142,7 @@ class VideoManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(),
+                    clearFilters();
                         this.setState({searchName: ''});
                 }} size="small" style={{width: 90}}>
                     重置
@@ -396,6 +401,7 @@ class VideoManageDemo extends React.Component {
             key: 'uploadTime',
             ...this.getDateFilter(),
             sorter: (a, b) => moment(a.uploadTime) - moment(b.uploadTime),
+            defaultSortOrder: 'descend',
         },
         {
             title: '上传者',
@@ -549,30 +555,69 @@ class VideoManageDemo extends React.Component {
 
     }
 
-    deleteUser() {
-
+    deleteVideo() {
+        axios({
+            url: ApiUtil.URL_IP + '/api/deleteManyFile',
+            method: 'post',
+            data: this.state.deleteList
+        }).then(
+            res => {
+                if (res.data.code === 0) {
+                    message.success('删除成功')
+                } else {
+                    message.error('删除失败，请重新再试！')
+                    res.data.data.forEach((item) => {
+                        message.error('删除' + item + '失败！')
+                    })
+                }
+                this.getData()
+                this.setState({deleteConfirmVisible: false})
+            }
+        )
     }
 
+    onSelectChange = selectedRowKeys => {
+        console.log('selectedRowKeys changed: ', selectedRowKeys);
+        this.setState({selectedRowKeys});
+        let list = []
+        this.state.data.forEach((item) => {
+            if (selectedRowKeys.indexOf(item.key) !== -1) {
+                let vd = {
+                    key: item.id,
+                    id: item.id,
+                    name: item.name,
+                }
+                list.push(vd)
+
+            }
+        })
+        this.setState({
+            deleteList: list
+        })
+    };
+
     render() {
-        const cardContent = `<b>上传</b>是您需要检测的视频文件通过网页或者上传工具发布到服务器上的过程。
-          <ul class="card-ul">
-            <li>您可以点击下方的拖拽按钮</li>
-            <li>您也可以直接将文件拖拽到此页面</li>
-            <li>文件格式必须是视频文件,包括：.mp4,.rmvb,.avi,.mov等</li>
-            <li >文件大小不得超过<b style="color:red">15Mb</b></li>
-          </ul>`;
+        const {selectedRowKeys} = this.state;
+        const rowSelection = {
+            selectedRowKeys,
+            onChange: this.onSelectChange,
+        };
+        const hasSelected = selectedRowKeys.length > 0;
         return (
             <div>
                 <CustomBreadcrumb arr={['数据管理', '数据库管理']}/>
                 <Card style={{marginTop: 10}}>
                     <Button type="primary" icon='upload' onClick={this.createUser.bind(this)}
                             style={{}}>上传视频</Button>
-                    <Button type="primary" icon='edit' onClick={this.editUser}
-                            style={{marginLeft: 10}}>编辑视频</Button>
-                    <Button type="danger" icon='delete' onClick={this.deleteUser}
+                    <Button type="danger" icon='delete' onClick={() => this.setState({deleteConfirmVisible: true})}
+                            disabled={!hasSelected}
                             style={{marginLeft: 10}}>删除视频</Button>
+                    <span style={{marginLeft: 8}}>
+                     {hasSelected ? `已选 ${selectedRowKeys.length} 项` : ''}
+                    </span>
                     <Spin spinning={this.state.loading} size="large" delay={500}>
-                        <Table dataSource={this.state.data} columns={this.columns} style={{marginTop: 15}}/>
+                        <Table rowSelection={rowSelection} dataSource={this.state.data} columns={this.columns}
+                               style={{marginTop: 15}}/>
                     </Spin>
                 </Card>
                 <Drawer
@@ -610,7 +655,34 @@ class VideoManageDemo extends React.Component {
                         </Button>
                     </div>
                 </Drawer>
-
+                <Modal
+                    title="删除视频"
+                    visible={this.state.deleteConfirmVisible}
+                    onCancel={() => {
+                        this.setState({deleteConfirmVisible: false})
+                    }}
+                    footer={[
+                        <Button key="back" onClick={() => {
+                            this.setState({deleteConfirmVisible: false})
+                        }}>
+                            取消
+                        </Button>,
+                        <Button key="submit" type="danger" onClick={
+                            () => {
+                                this.deleteVideo()
+                            }
+                        }>
+                            确认
+                        </Button>,
+                    ]}
+                >
+                    请确认您要删除的视频：
+                    <br/>
+                    <br/>
+                    {this.state.deleteList.map((item, index) => {
+                        return <div key={index}>{item.name}</div>
+                    })}
+                </Modal>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>
         )
