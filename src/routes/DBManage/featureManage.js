@@ -14,7 +14,7 @@ import {
     Select,
     Spin,
     Table,
-    DatePicker, Typography, Tooltip, Modal,
+    DatePicker, Typography, Tooltip, Modal, Divider,
 } from "antd";
 import HttpUtil from "../../utils/HttpUtil";
 import ApiUtil from "../../utils/ApiUtil";
@@ -22,11 +22,13 @@ import Highlighter from "react-highlight-words";
 import moment from "moment";
 import {Link} from "react-router-dom";
 import ReactJson from "react-json-view";
+import axios from "axios";
 
 const {Option} = Select;
 const {Paragraph, Text} = Typography;
 
 const {RangePicker} = DatePicker;
+const key = 'updatable';
 
 class FeatureManageDemo extends React.Component {
 
@@ -175,12 +177,19 @@ class FeatureManageDemo extends React.Component {
             key: 'action',
             render: (text, record) => (
                 <span>
-                    <Button type='primary' shape='round' size='small' icon="eye" onClick={()=>{
-                        this.setState({featureVisible:true,  arg:record.featurearg})
+                    <Button type='primary' shape='round' size='small' icon="eye" onClick={() => {
+                        this.setState({featureVisible: true, arg: record.featurearg})
                     }}/>
+                      <Divider type='vertical'/>
+                      <Tooltip title={'删除'}>
+                    <Button shape='round' size='small' type='danger' onClick={() => {
+                    this.setState({deleteVisible:true,featureid:record.featureid})
+
+                    }} icon={'delete'}/>
+                      </Tooltip>
                 </span>
             ),
-            width:100
+            width: 150
         }
     ];
 
@@ -192,8 +201,11 @@ class FeatureManageDemo extends React.Component {
         searchFeatureID: '',
         searchSTime: null,
         searchETime: null,
-        featureVisible:false,
-        arg:''
+        featureVisible: false,
+        deleteVisible:false,
+        arg: '',
+        authPassword:'',
+        featureid:0,
     }
 
     // 获取用户列表
@@ -247,6 +259,27 @@ class FeatureManageDemo extends React.Component {
             visible: false,
         });
     };
+    deleteFeature() {
+        message.loading({content: '正在删除特征中...', key});
+        let data = {
+            authPassword: this.state.authPassword,
+            id:this.state.featureid
+        }
+        axios({
+            url: ApiUtil.URL_IP + '/api/deleteFeature',
+            method: 'post',
+            data: data
+        }).then(
+            (res) => {
+                if (res.data.code === 1)
+                    message.error({content: res.data.msg, key, duration: 2});
+                else
+                    message.success({content: res.data.msg, key, duration: 2});
+                this.setState({deleteVisible: false, authPassword: ''})
+                this.getData()
+            }
+        )
+    }
 
 
     render() {
@@ -256,8 +289,8 @@ class FeatureManageDemo extends React.Component {
             onChange: this.onSelectChange,
         };
         const a = {
-            '1':111,
-            'aaa':232
+            '1': 111,
+            'aaa': 232
         }
         // const hasSelected = selectedRowKeys.length > 0;
         return (
@@ -267,10 +300,11 @@ class FeatureManageDemo extends React.Component {
                 <Card style={{marginTop: 10}}>
                     <Button type="primary" icon='plus' onClick={this.createFeature.bind(this)}
                             style={{}}>创建特征</Button>
-                    <Button type="danger" icon='delete' onClick={this.deleteFeature}
-                            style={{marginLeft: 10}}>删除特征</Button>
                     <Button type="primary" icon='reload'
-                            style={{marginLeft: 10}} onClick={()=>{this.getData()}}>刷新</Button>
+                            style={{marginLeft: 10}} onClick={() => {
+                        this.getData()
+                        message.info('已刷新')
+                    }}>刷新</Button>
                     <Spin spinning={this.state.loading} size="large" delay={500}>
                         <Table dataSource={this.state.data} columns={this.columns}
                                style={{marginTop: 20}}/>
@@ -358,13 +392,43 @@ class FeatureManageDemo extends React.Component {
                         this.setState({featureVisible: false})
                     }}
                 >
-                    <div style={{height:600,width:'100%',overflowY:'scroll'}}>
+                    <div style={{height: 600, width: '100%', overflowY: 'scroll'}}>
                         {this.state.arg}
                     </div>
 
                     {/*<ReactJson src= {a} />*/}
                     {/*<ReactJson src= {this.state.arg} />*/}
 
+                </Modal>
+                <Modal
+                    title="删除特征"
+                    visible={this.state.deleteVisible}
+                    footer={[
+                        <Button key="back" onClick={() => {
+                            this.setState({deleteVisible: false})
+                        }}>
+                            取消
+                        </Button>,
+                        <Button key="submit" type="danger" onClick={
+                            () => {
+                                this.deleteFeature()
+                            }
+                        }>
+                            确认
+                        </Button>,
+                    ]}
+                    onCancel={() => {
+                        this.setState({deleteVisible: false})
+                    }}
+                >
+                    <p>您将要删除ID为 {this.state.featureid} 的特征</p>
+                    <div><span>请您输入授权码以确认：</span> <Input.Password autoComplete='new-password'
+                                                                  value={this.state.authPassword}
+                                                                  onChange={(e) => {
+                                                                      this.setState({authPassword: e.target.value})
+                                                                  }}>
+                    </Input.Password>
+                    </div>
                 </Modal>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>
