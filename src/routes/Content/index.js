@@ -1,5 +1,19 @@
 import React from 'react'
-import {Table, Tag, Spin, DatePicker, message, Input, Icon, Button, Tooltip, BackTop, Badge,} from 'antd'
+import {
+    Table,
+    Tag,
+    Spin,
+    DatePicker,
+    message,
+    Input,
+    Icon,
+    Button,
+    Tooltip,
+    BackTop,
+    Badge,
+    Divider,
+    Modal,
+} from 'antd'
 import Highlighter from 'react-highlight-words';
 import CustomBreadcrumb from '../../components/CustomBreadcrumb/index'
 import HttpUtil from "../../utils/HttpUtil";
@@ -8,6 +22,7 @@ import {isAuthenticated} from "../../utils/Session";
 import {Link} from "react-router-dom";
 import {formatFileSize} from "../../utils/utils";
 import moment from 'moment'
+import axios from "axios";
 
 const {RangePicker} = DatePicker;
 const dateFormat = 'YYYY-MM-DD'
@@ -193,6 +208,7 @@ class ContentDemo extends React.Component {
             key: 'uploadTime',
             ...this.getDateFilter(),
             sorter: (a, b) => moment(a.uploadTime) - moment(b.uploadTime),
+            defaultSortOrder: 'descend',
         },
         {
             title: '审核状态',
@@ -223,6 +239,32 @@ class ContentDemo extends React.Component {
                                 </Button>
                             </Tooltip>
                         </Link>
+                    <Divider type='vertical'/>
+                      <Tooltip title={'删除'}>
+                    <Button shape='round' size='small' type='danger' onClick={()=>{
+                        let _this = this
+                        Modal.confirm({
+                            title: '您确定要删除这个视频吗？',
+                            content: '删除后将无法恢复',
+                            okText: '确定',
+                            okType: 'danger',
+                            cancelText: '取消',
+                            onOk() {
+                                axios({
+                                    url: ApiUtil.URL_IP + '/api/deleteFile/' + record.id,
+                                    method: 'get',
+                                }).then(res => {
+                                    if (res.data.code === 0) {
+                                        message.success('删除成功！')
+                                        _this.getData()
+                                    } else {
+                                        message.error('删除失败，请稍后再试！')
+                                    }
+                                })
+                            },
+                        });
+                    }} icon={'delete'}/>
+                      </Tooltip>
                 </span>
             ),
         }];

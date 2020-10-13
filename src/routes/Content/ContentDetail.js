@@ -41,7 +41,7 @@ class ContentDetail extends React.Component {
                 <Row gutter={20}>
                     <Col span={7}>
                         <MyCard style={{marginLeft: '20px'}} title={'操作'}>
-                            <Button style={{width: '100%'}} type='danger' onClick={() => {
+                            <Button style={{width: '100%',height:'40px'}} type='danger' onClick={() => {
                                 let _this = this
                                 Modal.confirm({
                                     title: '您确定要删除这个视频吗？',
