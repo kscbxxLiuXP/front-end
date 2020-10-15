@@ -1,15 +1,14 @@
 import React from 'react'
 import CustomBreadcrumb from '../../../components/CustomBreadcrumb/index'
-
-import {withRouter} from "react-router-dom";
-import {inject, observer} from "mobx-react";
 import cookie from "react-cookies";
-import {Tooltip, Radio, DatePicker, Icon, Input, Form, Row, Col, Button, message, InputNumber} from "antd";
+import {Tooltip, Radio, DatePicker, Icon, Input, Form, Row, Col, Button, message,InputNumber} from "antd";
 import {isAuthenticated} from "../../../utils/Session";
 import UserInfoCard from "../../../components/UserInfoCard";
 import axios from "axios";
 import ApiUtil from "../../../utils/ApiUtil";
 import moment from 'moment'
+import AvatarUpload from "../../../components/AvatarUpload";
+import MyCard from "../../../components/MyCard/MyCard";
 
 const formItemLayout = {
     labelCol: {
@@ -99,6 +98,9 @@ class PInformationDemo extends React.Component {
                 <Row gutter={30}>
                     <Col span={6}>
                         <UserInfoCard name={isAuthenticated()}/>
+                        <MyCard>
+
+                        </MyCard>
                     </Col>
                     <Col span={18}>
                         <div className="info-card" style={
@@ -113,6 +115,9 @@ class PInformationDemo extends React.Component {
                             <div style={{marginLeft: "30px"}}>
                                 <div style={{fontWeight: "bold", marginBottom: "20px", fontSize: "18px"}}>个人资料</div>
                                 <Form {...formItemLayout} onSubmit={this.handleSubmit}>
+                                    <Form.Item label='头像'>
+                                        <AvatarUpload name={this.state.user.username}/>
+                                    </Form.Item>
                                     <Form.Item label="用户名">
                                          <span>{isAuthenticated()}&nbsp;
                                              <Tooltip title="您不可以更改您的用户名">

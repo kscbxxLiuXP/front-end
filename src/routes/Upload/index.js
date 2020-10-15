@@ -58,7 +58,7 @@ const key = 'updatable'
 class UploadDemo extends React.Component {
     constructor() {
 
-        super();    //这句也很重要,这样才能在里面继承this
+        super();
 
         this.state = {
             visible: false,
@@ -187,7 +187,8 @@ class UploadDemo extends React.Component {
                                     boxShadow: "0px 0px 20px rgba(137,137,137, 0.1)",
                                     marginTop: "20px",
                                     marginBottom: "50px",
-                                    padding: "20px"
+                                    padding: "20px",
+                                    height:'330px'
                                 }}>
                                 <div style={{
                                     fontWeight: "bold",
@@ -196,14 +197,17 @@ class UploadDemo extends React.Component {
                                     fontSize: "18px"
                                 }}>上传
                                 </div>
-                                <Dragger action={ApiUtil.API_FILE_UPLOAD + isAuthenticated()}
-                                         beforeUpload={this.beforeUpload.bind(this)} {...props2}>
-                                    <p className="ant-upload-drag-icon">
-                                        <Icon type="inbox"/>
-                                    </p>
-                                    <p className="ant-upload-text">点击或拖拽到此处完成上传</p>
-                                    <p className="ant-upload-hint">支持单个或批量上传。严禁上传公司数据或其他带文件</p>
-                                </Dragger>
+                                <div  style={{height:230}}>
+                                    <Dragger action={ApiUtil.API_FILE_UPLOAD + isAuthenticated()}
+                                             beforeUpload={this.beforeUpload.bind(this)} {...props2}>
+                                        <p className="ant-upload-drag-icon">
+                                            <Icon type="inbox"/>
+                                        </p>
+                                        <p className="ant-upload-text">点击或拖拽到此处完成上传</p>
+                                        <p className="ant-upload-hint">支持单个或批量上传。严禁上传公司数据或其他带文件</p>
+                                    </Dragger>
+                                </div>
+
                             </div>
                         </Spin>
                     </Col>

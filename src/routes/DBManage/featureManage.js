@@ -257,6 +257,7 @@ class FeatureManageDemo extends React.Component {
     onClose = () => {
         this.setState({
             visible: false,
+            authPassword:''
         });
     };
     deleteFeature() {
@@ -363,9 +364,17 @@ class FeatureManageDemo extends React.Component {
                             </Col>
                         </Row>
                     </Form>
+                    <div><span>请您输入授权码以确认：</span> <Input.Password autoComplete='new-password'
+                                                                  value={this.state.authPassword}
+                                                                  onChange={(e) => {
+                                                                      this.setState({authPassword: e.target.value})
+                                                                  }}>
+                    </Input.Password>
+                    </div>
                     <div
                         style={{
                             textAlign: 'right',
+                            marginTop:20
                         }}
                     >
                         <Button onClick={this.onClose} style={{marginRight: 8}}>

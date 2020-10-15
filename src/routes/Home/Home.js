@@ -284,6 +284,7 @@ class Home extends React.Component {
                 plotOptions: {
                     bar: {
                         horizontal: false,
+                        columnWidth: '30%',
                     },
                 },
                 xaxis: {
