@@ -78,10 +78,6 @@ class Login extends React.Component {
                     return
                 }
 
-
-                const users = appStore.users
-                console.log(users)
-
                 // 检测用户名是否存在
                 // const result = users.find(item => item.username === values.username)
                 HttpUtil.get(ApiUtil.API_CHECK_USER + values.username)
@@ -89,7 +85,6 @@ class Login extends React.Component {
                         re => {
                             if (re.code === 1) {
                                 //检测密码是否错误
-                                console.log(md5(values.password))
                                 HttpUtil.get(ApiUtil.API_CHECK_PASSWORD + values.username + '/' + md5(values.password))
                                     .then(
                                         re => {

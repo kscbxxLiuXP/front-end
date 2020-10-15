@@ -174,7 +174,6 @@ class NewAppeal extends React.Component {
         })
         if (b === false) {
             this.setState({errorInfo: q, errorVisible: true})
-            console.log(q)
         }
 
         return b

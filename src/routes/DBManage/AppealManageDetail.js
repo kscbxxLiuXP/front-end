@@ -80,7 +80,6 @@ class AppealManageDetail extends React.Component {
             resolveTime: moment().format('YYYY-MM-DD HH:mm:ss'),
             type:this.state.type
         }
-        console.log(data)
         axios({
             url: ApiUtil.URL_IP + '/api/resolveAppeal',
             method: 'post',

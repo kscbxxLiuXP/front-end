@@ -72,7 +72,6 @@ class AccountDemo extends React.Component {
                 data.username = isAuthenticated()
                 data.password = md5(values.newpassword)
                 data.oldpassword = md5(values.oldpassword)
-                console.log(data)
                 this.changePassword(data)
             }
         });

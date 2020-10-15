@@ -100,7 +100,6 @@ class AvatarUpload extends React.Component {
                                     url: ApiUtil.URL_IP + '/api/confirmAvatarChange/' + isAuthenticated(),
                                     method: "get"
                                 }).then(res => {
-                                    console.log(res.data)
                                     if (res.data.code === 0) {
                                         this.setState({
                                             visible: false,

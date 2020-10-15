@@ -89,7 +89,6 @@ class ContentDetail extends React.Component {
                 method: 'get'
             }
         ).then(res => {
-            console.log(res.data.data)
             this.setState({
                 video: res.data.data.video,
                 copy: res.data.data.copyinfo,

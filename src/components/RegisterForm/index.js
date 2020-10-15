@@ -30,7 +30,6 @@ class RegisterForm extends React.Component {
                 let register = values
                 register.birth = register.birth.format('YYYY-MM-DD')
                 register.password = md5(register.password)
-                console.log(register)
                 message.loading({content: '注册中...', key});
                 axios(
                     {

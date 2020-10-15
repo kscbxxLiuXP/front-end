@@ -35,7 +35,6 @@ class Home extends React.Component {
         }).then(
             (res) => {
                 this.setState({dashboard: res.data.data})
-                console.log(res.data.data)
             }
         ).catch(err => {
             message.error(err.data.msg)

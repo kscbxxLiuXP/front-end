@@ -51,7 +51,6 @@ const props2 = {
         if (info.file.status === 'done') {
 
             message.success({content: `${info.file.name} 文件上传成功，后台正在构建特征`, key});
-            console.log('md5' + info.file.md5)
         } else if (info.file.status === 'error') {
             message.error({content: `${info.file.name} 文件上传失败`, key});
         } else if (info.file.status === 'removed') {
@@ -525,7 +524,6 @@ class VideoManageDemo extends React.Component {
     }
 
     onSelectChange = selectedRowKeys => {
-        console.log('selectedRowKeys changed: ', selectedRowKeys);
         this.setState({selectedRowKeys});
     };
 
@@ -575,7 +573,6 @@ class VideoManageDemo extends React.Component {
     }
 
     onSelectChange = selectedRowKeys => {
-        console.log('selectedRowKeys changed: ', selectedRowKeys);
         this.setState({selectedRowKeys});
         let list = []
         this.state.data.forEach((item) => {

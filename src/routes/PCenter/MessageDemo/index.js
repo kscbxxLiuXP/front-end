@@ -69,7 +69,6 @@ class MessageDemo extends React.Component {
     }
 
     fetchUser = value => {
-        console.log('fetching user', value);
         if (value.trim() === '')
             return
         this.lastFetchId += 1;
@@ -102,7 +101,6 @@ class MessageDemo extends React.Component {
 
 
     showDrawer = (record, e) => {
-        console.log(record)
         this.setState({
             visible: true,
         });
@@ -132,7 +130,6 @@ class MessageDemo extends React.Component {
             content: draftToHtml(convertToRaw(this.state.editor.getCurrentContent())),
             subject: this.state.subject
         }
-        console.log(msg)
         axios({
             url: ApiUtil.URL_IP + '/api/sendMessage',
             method: 'post',

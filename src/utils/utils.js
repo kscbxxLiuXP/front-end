@@ -72,12 +72,8 @@ export function getfilemd5sum(ofile) {
             fileReader = new FileReader();
 
         fileReader.onload = function (e) {
-            // console.log('read chunk nr', currentChunk + 1, 'of', chunks);
             spark.append(e.target.result); // Append array buffer
             currentChunk++;
-            let md5_progress = Math.floor((currentChunk / chunks) * 100);
-
-            console.log(`file.name   正在处理，请稍等,已完成" + ${md5_progress}  %`);
             if (currentChunk < chunks) {
                 loadNext();
             } else {

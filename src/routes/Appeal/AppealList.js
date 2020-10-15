@@ -8,9 +8,6 @@ const {Item} = List
 
 @withRouter
 class AppealList extends React.Component {
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.props.data)
-    }
 
     renderAppealState(appeal) {
         if (appeal.state === 1) {

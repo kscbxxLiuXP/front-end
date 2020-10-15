@@ -35,22 +35,24 @@ const tailFormItemLayout = {
     },
 };
 const key = 'updatable';
-
 @Form.create()
 class PInformationDemo extends React.Component {
     state = {
         user: {},
         time: new Date(),
+        timer:null,
     }
 
     componentDidMount() {
-        setInterval(() => {
-            // new Date();
+        this.setState({
+            timer:setInterval(()=>{
+                this.setState({
+                    time: new Date(),
+                });
+//需要定时执行的方法
 
-            this.setState({
-                time: new Date(),
-            });
-        }, 1000);
+            }, 1000)
+        })
     }
 
     componentWillMount() {
@@ -76,6 +78,9 @@ class PInformationDemo extends React.Component {
             avatar: require('../../../assets/img/04.jpg')
         })
 
+    }
+    componentWillUnmount() {
+        clearTimeout(this.state.timer)
     }
 
     handleSubmit = e => {

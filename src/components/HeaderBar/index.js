@@ -20,6 +20,8 @@ const logo="\n" +
     "                                                     \n" +
     "                                                     \n"
 //withRouter一定要写在前面，不然路由变化不会反映到props中去
+let timer1
+let timer2
 @withRouter  @observer
 class HeaderBar extends React.Component {
     state = {
@@ -37,7 +39,7 @@ class HeaderBar extends React.Component {
                 icon: screenfull.isFullscreen ? 'shrink' : 'arrows-alt'
             })
         })
-        setInterval(() => {
+        timer1=setInterval(() => {
 
             // new Date();
             let sysTime = formateTime(new Date().getTime());
@@ -46,12 +48,11 @@ class HeaderBar extends React.Component {
                 date: new Date(),
             });
         }, 1000);
-        setInterval(() => {
+        timer2=setInterval(() => {
             if (isAuthenticated())
                 this.getMessageCount()
         }, 5000)
     }
-
     getMessageCount() {
         axios({
             method: "get",
@@ -91,7 +92,8 @@ class HeaderBar extends React.Component {
     }
 
     componentWillUnmount() {
-
+        clearInterval(timer1)
+        clearInterval(timer2)
         screenfull.off('change')
 
     }

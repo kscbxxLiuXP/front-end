@@ -5,7 +5,6 @@ const {Step} = Steps;
 
 class AppealStep extends React.Component {
     renderStep(appeal) {
-        console.log(appeal)
         if (appeal.state === 1) {
             return (
                 <Steps size='small' current={1}>

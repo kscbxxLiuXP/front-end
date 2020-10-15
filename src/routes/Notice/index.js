@@ -56,7 +56,6 @@ class NoticeDemo extends React.Component {
                 url: ApiUtil.URL_IP + "/api/noticeList"
             }
         ).then(res => {
-            console.log(res.data.data.notices)
             this.setState({notices: res.data.data.notices})
         })
     }
