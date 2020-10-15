@@ -2,7 +2,7 @@ import React from "react";
 import ApiUtil from "../../utils/ApiUtil";
 import axios from "axios";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
-import {BackTop, Row, Anchor, Input, Typography, Button, Icon, Tag, Result} from "antd";
+import {BackTop, Input,} from "antd";
 import MyCard from "../../components/MyCard/MyCard";
 import AppealStep from "./AppealStep";
 import VideoCompareCard from "../../components/VideoContentDetail/VideoCompareCard";

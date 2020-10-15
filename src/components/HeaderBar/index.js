@@ -1,14 +1,13 @@
 import React from 'react'
 import {Icon, Badge, Dropdown, Menu, Modal, Typography, notification, Tooltip, Tag} from 'antd'
 import screenfull from 'screenfull'
-import {inject, observer} from 'mobx-react'
+import { observer} from 'mobx-react'
 import {Link, withRouter} from 'react-router-dom'
 import {isAuthenticated} from '../../utils/Session'
-import {formateDate, formateTime} from '../../utils/utils'
+import { formateTime} from '../../utils/utils'
 import cookie from "react-cookies";
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
-import Clock from "react-clock";
 import appStore from "../../store/appStore";
 const {Text} = Typography;
 const logo="\n" +
@@ -111,7 +110,7 @@ class HeaderBar extends React.Component {
     }
 
     render() {
-        const {icon, count, visible, avatar} = this.state
+        const {icon, count, visible} = this.state
         const { collapsed, location} = this.props
         const notLogin = (
             <div>
@@ -157,7 +156,7 @@ class HeaderBar extends React.Component {
                     className='trigger'
                     onClick={this.toggle}/>
                 <Text style={{marginLeft: 15, marginRight: 15, fontSize: 20}}>{collapsed ? '短视频版权检测平台' : ''}</Text>
-                {cookie.load('userId-admined') == 1 ? <Tag color="volcano">
+                {cookie.load('userId-admined') === '1' ? <Tag color="volcano">
                     管理员模式
                 </Tag> : ''}
 

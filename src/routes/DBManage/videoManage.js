@@ -12,7 +12,7 @@ import {
     Modal,
     Table,
     Drawer,
-    Typography, Tag, Tooltip, Switch
+    Typography, Tag, Tooltip
 } from 'antd'
 import CustomBreadcrumb from '../../components/CustomBreadcrumb'
 import {isAuthenticated} from "../../utils/Session";
@@ -20,7 +20,7 @@ import ApiUtil from "../../utils/ApiUtil";
 import HttpUtil from "../../utils/HttpUtil";
 
 
-import {formatFileSize, generateVideoID, getfilemd5sum} from "../../utils/utils";
+import {formatFileSize, getfilemd5sum} from "../../utils/utils";
 import {Link} from "react-router-dom";
 import moment from "moment";
 import Highlighter from "react-highlight-words";
@@ -36,7 +36,7 @@ const {Text} = Typography;
 function deleteFile(filename, fileList) {
     //上传失败，在上传列表中删除上传失败的文件
     let index = -1;
-    for (var i = 0; i < fileList.length; i++) {
+    for (let i = 0; i < fileList.length; i++) {
         if (fileList[i] === filename) index = i;
     }
     fileList.splice(index, 1);
@@ -79,7 +79,7 @@ class VideoManageDemo extends React.Component {
 
     constructor() {
 
-        super();    //这句也很重要,这样才能在里面继承this
+        super(); //这句也很重要,这样才能在里面继承this
 
         this.state = {
             visible: false,
@@ -143,7 +143,7 @@ class VideoManageDemo extends React.Component {
                 </Button>
                 <Button onClick={() => {
                     clearFilters();
-                        this.setState({searchName: ''});
+                    this.setState({searchName: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -204,8 +204,8 @@ class VideoManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(),
-                        this.setState({searchAuth: ''});
+                    clearFilters();
+                    this.setState({searchAuth: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -266,8 +266,8 @@ class VideoManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(),
-                        this.setState({searchID: ''});
+                    clearFilters();
+                    this.setState({searchID: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -304,9 +304,6 @@ class VideoManageDemo extends React.Component {
                         '今天': [moment(), moment()],
                         '本月': [moment().startOf('month'), moment().endOf('month')],
                     }}
-                    ref={node => {
-                        this.searchRange = node;
-                    }}
                     value={selectedKeys[0]}
 
                     style={{marginBottom: -10, display: 'block'}}
@@ -332,7 +329,8 @@ class VideoManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({
+                    clearFilters();
+                    this.setState({
                         searchSTime: null,
                         searchETime: null
                     });
@@ -689,20 +687,4 @@ class VideoManageDemo extends React.Component {
     }
 }
 
-
-const styles = {
-    searchItem: {
-        width: 200,
-        marginTop: 4,
-        marginRight: 10,
-    },
-    prefixIcon: {
-        color: 'rgba(0,0,0,.25)',
-    },
-    divider: {
-        marginTop: 4,
-        marginBottom: 8,
-    }
-
-}
 export default VideoManageDemo

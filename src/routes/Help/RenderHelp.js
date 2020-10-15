@@ -1,5 +1,4 @@
 import React from "react";
-import MyCard from "../../components/MyCard/MyCard";
 import {Divider, Radio, Button, BackTop} from "antd";
 import './style.css'
 
@@ -31,9 +30,6 @@ const helpList = [
     }
 ]
 
-class Help1 extends React.Component {
-
-}
 
 class RenderHelp extends React.Component {
     state = {

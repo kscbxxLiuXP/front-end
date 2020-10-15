@@ -4,8 +4,7 @@ import {
     Avatar,
     BackTop,
     Button,
-    Card, Checkbox,
-    Col,
+    Card,
     DatePicker,
     Drawer,
     Dropdown,
@@ -17,8 +16,6 @@ import {
     message,
     Modal,
     Radio,
-    Row,
-    Select,
     Spin,
     Table,
     Tag,
@@ -33,7 +30,6 @@ import axios from "axios";
 import md5 from 'md5';
 import RegisterForm from "../../components/RegisterForm";
 
-const {Option} = Select;
 const NicknameHighlight = '#ffc069';
 const UsernameHighlight = '#83d072';
 const EmailHighlight = '#85cce8';
@@ -122,7 +118,8 @@ class UserManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({searchNickName: ''});
+                    clearFilters();
+                    this.setState({searchNickName: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -183,7 +180,8 @@ class UserManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({searchUsername: ''});
+                    clearFilters();
+                    this.setState({searchUsername: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -244,7 +242,8 @@ class UserManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({searchEmail: ''});
+                    clearFilters();
+                    this.setState({searchEmail: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -305,7 +304,8 @@ class UserManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({searchPhone: ''});
+                    clearFilters();
+                    this.setState({searchPhone: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -643,7 +643,9 @@ class UserManageDemo extends React.Component {
                     <Button type="primary" icon='plus' onClick={this.createUser.bind(this)}
                             style={{}}>创建用户</Button>
                     <Button type="primary" icon='reload'
-                            style={{marginLeft: 10}} onClick={()=>{this.getData()}}>刷新</Button>
+                            style={{marginLeft: 10}} onClick={() => {
+                        this.getData()
+                    }}>刷新</Button>
                     <Spin spinning={this.state.loading} size="large" delay={500}>
                         <Table dataSource={this.state.data} columns={this.columns} bordered
                                style={{marginTop: 20}}/>
@@ -922,19 +924,4 @@ class UserManageDemo extends React.Component {
     }
 }
 
-const styles = {
-    searchItem: {
-        width: 150,
-        marginTop: 4,
-        marginRight: 6,
-    },
-    prefixIcon: {
-        color: 'rgba(0,0,0,.25)',
-    },
-    divider: {
-        marginTop: 4,
-        marginBottom: 8,
-    }
-
-}
 export default UserManageDemo

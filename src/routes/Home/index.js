@@ -44,7 +44,6 @@ class Home extends React.Component {
 
 
     render() {
-        const {avatar} = this.state
         return (
             <div className='home'>
                 <Row gutter={10}>
@@ -189,17 +188,6 @@ class Home extends React.Component {
             </div>
         )
     }
-}
-
-const styles = {
-    bg: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-    },
-
-
 }
 
 export default Home

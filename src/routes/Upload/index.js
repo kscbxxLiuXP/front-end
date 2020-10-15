@@ -16,7 +16,7 @@ const Dragger = Upload.Dragger;
 function deleteFile(filename, fileList) {
     //上传失败，在上传列表中删除上传失败的文件
     let index = -1;
-    for (var i = 0; i < fileList.length; i++) {
+    for (let i = 0; i < fileList.length; i++) {
         if (fileList[i] === filename) index = i;
     }
     fileList.splice(index, 1);

@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomBreadcrumb from '../../../components/CustomBreadcrumb/index'
 import cookie from "react-cookies";
-import {Tooltip, Radio, DatePicker, Icon, Input, Form, Row, Col, Button, message,InputNumber} from "antd";
+import {Tooltip, Radio, DatePicker, Icon, Input, Form, Row, Col, Button, message, InputNumber} from "antd";
 import {isAuthenticated} from "../../../utils/Session";
 import UserInfoCard from "../../../components/UserInfoCard";
 import axios from "axios";
@@ -9,6 +9,8 @@ import ApiUtil from "../../../utils/ApiUtil";
 import moment from 'moment'
 import AvatarUpload from "../../../components/AvatarUpload";
 import MyCard from "../../../components/MyCard/MyCard";
+import Clock from "react-clock";
+import 'react-clock/dist/Clock.css';
 
 const formItemLayout = {
     labelCol: {
@@ -37,7 +39,18 @@ const key = 'updatable';
 @Form.create()
 class PInformationDemo extends React.Component {
     state = {
-        user: {}
+        user: {},
+        time: new Date(),
+    }
+
+    componentDidMount() {
+        setInterval(() => {
+            // new Date();
+
+            this.setState({
+                time: new Date(),
+            });
+        }, 1000);
     }
 
     componentWillMount() {
@@ -98,8 +111,14 @@ class PInformationDemo extends React.Component {
                 <Row gutter={30}>
                     <Col span={6}>
                         <UserInfoCard name={isAuthenticated()}/>
-                        <MyCard>
-
+                        <MyCard style={{marginLeft: 30, marginTop: -30, height: 210, alignContent: 'center',
+                            alignItems: 'center',
+                            boxSizing: 'border-box',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            flexWrap: 'nowrap',
+                            justifyContent: 'center',}}>
+                            <Clock renderNumbers={true} value={this.state.time} />
                         </MyCard>
                     </Col>
                     <Col span={18}>

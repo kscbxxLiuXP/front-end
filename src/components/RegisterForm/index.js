@@ -1,4 +1,4 @@
-import {Button, Checkbox, DatePicker, Form, Icon, Input, InputNumber, message, Radio, Tooltip} from "antd";
+import {Button, DatePicker, Form, Icon, Input, InputNumber, message, Radio, Tooltip} from "antd";
 import md5 from "md5";
 import axios from "axios";
 import ApiUtil from "../../utils/ApiUtil";
@@ -69,7 +69,6 @@ class RegisterForm extends React.Component {
                             callback('该用户名已被使用')
                         } else {
                             callback();
-                            return
                         }
 
                     }
@@ -96,10 +95,6 @@ class RegisterForm extends React.Component {
         callback();
     };
 
-
-    agreementOnChange = e => {
-        this.setState({agree: e.target.checked})
-    }
 
     render() {
 

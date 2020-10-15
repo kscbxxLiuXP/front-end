@@ -3,17 +3,11 @@ import {
     Row,
     Col,
     Radio,
-    List,
-    Card,
     Icon,
     Avatar,
-    Statistic,
     Button,
-    Affix,
     message,
-    Input,
     Divider,
-    Badge,
     Modal
 } from 'antd'
 import './style.css'
@@ -22,11 +16,10 @@ import {isAuthenticated} from '../../utils/Session'
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
 import Background from '../../assets/img/profile-back.png';
-import ReactApexChart  from 'apexcharts'
 import Chart from "react-apexcharts"
 
 
-var sectionStyle = {
+let sectionStyle = {
     width: "200px",
     height: "130px",
     // makesure here is String确保这里是一个字符串，以下是es6写法
@@ -36,7 +29,8 @@ var sectionStyle = {
     borderRadius: '5px',
     float: 'right'
 };
-var zh_cn = require("apexcharts/dist/locales/zh-cn.json")
+let zh_cn = require("apexcharts/dist/locales/zh-cn.json")
+
 class Home extends React.Component {
     constructor() {
         super();
@@ -52,12 +46,13 @@ class Home extends React.Component {
             message.error(err.data.msg)
         })
     }
+
     state = {
         avatar: require('../../assets/img/04.jpg'),
         dashboard: {
-            notices:[]
+            notices: []
         },
-        visible:false,
+        visible: false,
         cNotice: {},
         series: [{
             name: '审核通过',
@@ -67,7 +62,7 @@ class Home extends React.Component {
             data: [0, 0, 0, 0, 0, 0],
         }, {
             name: '审核中',
-            data:[0, 0, 0, 0, 0, 0],
+            data: [0, 0, 0, 0, 0, 0],
         }],
         options: {
             chart: {
@@ -83,10 +78,10 @@ class Home extends React.Component {
                     enabled: false
                 }
             },
-            dataLabels:{
+            dataLabels: {
                 enabled: false
             },
-            colors: ['#34c38f', '#E91E63','#556ee6' , '#f1b44c'],
+            colors: ['#34c38f', '#E91E63', '#556ee6', '#f1b44c'],
             plotOptions: {
                 bar: {
                     horizontal: false,
@@ -115,7 +110,7 @@ class Home extends React.Component {
             legend: {
                 position: 'bottom',
                 offsetY: 10,
-                height:30,
+                height: 30,
             },
             fill: {
                 opacity: 1
@@ -125,10 +120,10 @@ class Home extends React.Component {
     }
 
     setYear() {
-        let pass=this.state.dashboard.year.pass
-        let process=this.state.dashboard.year.process
-        let fail=this.state.dashboard.year.fail
-        let dateSequence=this.state.dashboard.year.dateSequence
+        let pass = this.state.dashboard.year.pass
+        let process = this.state.dashboard.year.process
+        let fail = this.state.dashboard.year.fail
+        let dateSequence = this.state.dashboard.year.dateSequence
 
         this.setState({
             series: [{
@@ -139,7 +134,7 @@ class Home extends React.Component {
                 data: fail
             }, {
                 name: '审核中',
-                data:process
+                data: process
             }],
             options: {
                 chart: {
@@ -155,10 +150,10 @@ class Home extends React.Component {
                         enabled: false
                     }
                 },
-                dataLabels:{
+                dataLabels: {
                     enabled: false
                 },
-                colors: ['#34c38f', '#E91E63','#556ee6' , '#f1b44c'],
+                colors: ['#34c38f', '#E91E63', '#556ee6', '#f1b44c'],
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -177,7 +172,7 @@ class Home extends React.Component {
                 legend: {
                     position: 'bottom',
                     offsetY: 10,
-                    height:30,
+                    height: 30,
                 },
                 fill: {
                     opacity: 1
@@ -185,11 +180,12 @@ class Home extends React.Component {
             },
         })
     }
+
     setMonth() {
-        let pass=this.state.dashboard.month.pass
-        let process=this.state.dashboard.month.process
-        let fail=this.state.dashboard.month.fail
-        let dateSequence=this.state.dashboard.month.dateSequence
+        let pass = this.state.dashboard.month.pass
+        let process = this.state.dashboard.month.process
+        let fail = this.state.dashboard.month.fail
+        let dateSequence = this.state.dashboard.month.dateSequence
 
         this.setState({
             series: [{
@@ -200,7 +196,7 @@ class Home extends React.Component {
                 data: fail
             }, {
                 name: '审核中',
-                data:process
+                data: process
             }],
             options: {
                 chart: {
@@ -216,10 +212,10 @@ class Home extends React.Component {
                         enabled: false
                     }
                 },
-                dataLabels:{
+                dataLabels: {
                     enabled: false
                 },
-                colors: ['#34c38f', '#E91E63','#556ee6' , '#f1b44c'],
+                colors: ['#34c38f', '#E91E63', '#556ee6', '#f1b44c'],
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -238,7 +234,7 @@ class Home extends React.Component {
                 legend: {
                     position: 'bottom',
                     offsetY: 10,
-                    height:30,
+                    height: 30,
                 },
                 fill: {
                     opacity: 1
@@ -246,11 +242,12 @@ class Home extends React.Component {
             },
         })
     }
+
     setWeek() {
-        let pass=this.state.dashboard.week.pass
-        let process=this.state.dashboard.week.process
-        let fail=this.state.dashboard.week.fail
-        let dateSequence=this.state.dashboard.week.dateSequence
+        let pass = this.state.dashboard.week.pass
+        let process = this.state.dashboard.week.process
+        let fail = this.state.dashboard.week.fail
+        let dateSequence = this.state.dashboard.week.dateSequence
 
         this.setState({
             series: [{
@@ -261,7 +258,7 @@ class Home extends React.Component {
                 data: fail
             }, {
                 name: '审核中',
-                data:process
+                data: process
             }],
             options: {
                 chart: {
@@ -277,10 +274,10 @@ class Home extends React.Component {
                         enabled: false
                     }
                 },
-                dataLabels:{
+                dataLabels: {
                     enabled: false
                 },
-                colors: ['#34c38f', '#E91E63','#556ee6' , '#f1b44c'],
+                colors: ['#34c38f', '#E91E63', '#556ee6', '#f1b44c'],
                 plotOptions: {
                     bar: {
                         horizontal: false,
@@ -302,7 +299,7 @@ class Home extends React.Component {
                 legend: {
                     position: 'bottom',
                     offsetY: 10,
-                    height:30,
+                    height: 30,
                 },
                 fill: {
                     opacity: 1
@@ -310,8 +307,8 @@ class Home extends React.Component {
             },
         })
     }
+
     render() {
-        const {avatar} = this.state
         return (
             <div className='home'>
                 <div style={{marginLeft: 20, fontWeight: "bold", fontSize: "20px"}}>Dashboard</div>
@@ -375,22 +372,24 @@ class Home extends React.Component {
                         </div>
                         <div className='notice-wrapper'>
                             <div className='card-title'>公告</div>
-                            <div style={{marginTop:30}}>
-                            {this.state.dashboard.notices.map((item, index) => {
-                                return (
-                                    <a onClick={() => this.setState({visible: true, cNotice: item})} key={item.key} className='notice'>
-                                        <div className='notice-title1'>
-                                            <Icon style={{marginRight:10}} type="sound" />{item.title}
-                                        </div>
+                            <div style={{marginTop: 30}}>
+                                {this.state.dashboard.notices.map((item) => {
+                                    return (
+                                        <a onClick={() => this.setState({visible: true, cNotice: item})} key={item.key}
+                                           className='notice'>
+                                            <div className='notice-title1'>
+                                                <Icon style={{marginRight: 10}} type="sound"/>{item.title}
+                                            </div>
 
-                                        <div className='notice-time'>
-                                            {item.time}>
-                                        </div>
-                                        <Divider/>
-                                    </a>)
-                            })}
+                                            <div className='notice-time'>
+                                                {item.time}>
+                                            </div>
+                                            <Divider/>
+                                        </a>)
+                                })}
                             </div>
-                            <button className='btn-more-notice' onClick={()=>this.props.history.push('/home/notice')}><span>更多</span></button>
+                            <button className='btn-more-notice' onClick={() => this.props.history.push('/home/notice')}>
+                                <span>更多</span></button>
                         </div>
 
                     </Col>
@@ -406,13 +405,14 @@ class Home extends React.Component {
                                                         审核中
                                                     </div>
                                                     <div className='data-panel-data'>
-                                                        {this.state.dashboard.verifyNum}<span style={{fontSize:12,marginLeft:5}}>项</span>
+                                                        {this.state.dashboard.verifyNum}<span
+                                                        style={{fontSize: 12, marginLeft: 5}}>项</span>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col span={6}>
                                                 <div className='data-panel-icon-wrapper'>
-                                                    <Icon  className='data-panel-icon' type='clock-circle'/>
+                                                    <Icon className='data-panel-icon' type='clock-circle'/>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -427,13 +427,14 @@ class Home extends React.Component {
                                                         申诉
                                                     </div>
                                                     <div className='data-panel-data'>
-                                                        {this.state.dashboard.appealNum}<span style={{fontSize:12,marginLeft:5}}>项</span>
+                                                        {this.state.dashboard.appealNum}<span
+                                                        style={{fontSize: 12, marginLeft: 5}}>项</span>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col span={6}>
                                                 <div className='data-panel-icon-wrapper'>
-                                                    <Icon  className='data-panel-icon' type='bulb'/>
+                                                    <Icon className='data-panel-icon' type='bulb'/>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -448,14 +449,15 @@ class Home extends React.Component {
                                                         已完成
                                                     </div>
                                                     <div className='data-panel-data'>
-                                                        {this.state.dashboard.finishNum}<span style={{fontSize:12,marginLeft:5}}>项</span>
+                                                        {this.state.dashboard.finishNum}<span
+                                                        style={{fontSize: 12, marginLeft: 5}}>项</span>
                                                     </div>
                                                 </div>
                                             </Col>
                                             <Col span={6}>
                                                 <div className='data-panel-icon-wrapper'>
                                                     <div className='icon-back'/>
-                                                    <Icon  className='data-panel-icon' type='check'/>
+                                                    <Icon className='data-panel-icon' type='check'/>
                                                 </div>
                                             </Col>
                                         </Row>
@@ -466,13 +468,13 @@ class Home extends React.Component {
                         <div className='chart-wrapper'>
 
                             <Radio.Group style={{float: "right", marginTop: 20}} defaultValue="a" buttonStyle="solid">
-                                <Radio.Button value="a" onClick={()=>this.setWeek()}>最近一周</Radio.Button>
-                                <Radio.Button value="b" onClick={()=>this.setMonth()}>最近一月</Radio.Button>
-                                <Radio.Button value="c" onClick={()=>this.setYear()}>最近一年</Radio.Button>
+                                <Radio.Button value="a" onClick={() => this.setWeek()}>最近一周</Radio.Button>
+                                <Radio.Button value="b" onClick={() => this.setMonth()}>最近一月</Radio.Button>
+                                <Radio.Button value="c" onClick={() => this.setYear()}>最近一年</Radio.Button>
                             </Radio.Group>
                             <div className='card-title'>创作记录</div>
-                            <div style={{marginTop:10}}>
-                                <Chart  options={this.state.options} series={this.state.series} type="bar"   height={430} />
+                            <div style={{marginTop: 10}}>
+                                <Chart options={this.state.options} series={this.state.series} type="bar" height={430}/>
                             </div>
 
                         </div>
@@ -506,15 +508,5 @@ class Home extends React.Component {
     }
 }
 
-const styles = {
-    bg: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%'
-    },
-
-
-}
 
 export default Home

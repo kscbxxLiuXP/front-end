@@ -1,5 +1,5 @@
 import React from 'react'
-import {BackTop, Button, Card, Col, message, Progress, Result, Modal, Row, Skeleton, Typography} from 'antd'
+import {BackTop, Button, Col, message, Modal, Row, } from 'antd'
 import CustomBreadcrumb from '../../components/CustomBreadcrumb/index'
 
 import ApiUtil from "../../utils/ApiUtil";
@@ -42,7 +42,6 @@ class ContentDetail extends React.Component {
                     <Col span={7}>
                         <MyCard style={{marginLeft: '20px'}} title={'操作'}>
                             <Button style={{width: '100%',height:'40px'}} type='danger' onClick={() => {
-                                let _this = this
                                 Modal.confirm({
                                     title: '您确定要删除这个视频吗？',
                                     content: '删除后将无法恢复',
@@ -106,27 +105,5 @@ class ContentDetail extends React.Component {
     }
 
 
-}
-
-const titleStyle = {
-    flex: 1,
-    color: "#28314E",
-    fontSize: 16,
-    lineHeight: 2,
-    marginVertical: 5,
-}
-const contentStyle = {
-    flex: 1,
-    color: "rgba(25,18,12,0.45)",
-    fontSize: 14,
-    lineHeight: 2,
-    marginVertical: 5,
-}
-const videoTimeStyle = {
-    flex: 1,
-    color: "rgba(254,39,97,0.96)",
-    fontSize: 14,
-    lineHeight: 2,
-    marginVertical: 5,
 }
 export default ContentDetail

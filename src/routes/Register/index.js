@@ -7,11 +7,10 @@ import {
     Input,
     Tooltip,
     Icon,
-    Select,
     Checkbox,
     InputNumber,
     Button,
-    AutoComplete, Radio, DatePicker, message,
+    Radio, DatePicker, message,
 } from "antd";
 import {enquireScreen} from "enquire-js";
 import './style.css'
@@ -27,10 +26,6 @@ enquireScreen((b) => {
     isMobile = b;
 });
 const {location = {}} = typeof window !== 'undefined' ? window : {};
-
-const {Option} = Select;
-const AutoCompleteOption = AutoComplete.Option;
-
 
 @Form.create()
 class Register extends React.Component {
@@ -128,7 +123,6 @@ class Register extends React.Component {
 
         //form const settings
         const {getFieldDecorator} = this.props.form;
-        const {autoCompleteResult} = this.state;
 
         const formItemLayout = {
             labelCol: {

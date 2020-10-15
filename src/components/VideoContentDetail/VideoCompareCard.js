@@ -1,7 +1,7 @@
 import React from "react";
 import {Player} from "video-react";
 import ApiUtil from "../../utils/ApiUtil";
-import {Card, Col, Row, Typography} from "antd";
+import { Col, Row, Typography} from "antd";
 
 const {Text} = Typography
 

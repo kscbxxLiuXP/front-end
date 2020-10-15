@@ -1,9 +1,7 @@
 import React from "react";
-import {Result,Tag, Typography, Steps, Button, Skeleton, Icon} from "antd";
+import {Result,Tag, Typography, Button, Skeleton, Icon} from "antd";
 import {withRouter} from "react-router-dom";
-import {inject} from "mobx-react";
 
-const {Step} = Steps
 const { Paragraph, Text } = Typography;
 @withRouter
 class DetectResultCard extends React.Component {

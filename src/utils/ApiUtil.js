@@ -14,13 +14,10 @@ export default class ApiUtil {
     static API_FILE_UPLOAD = URL_ROOT + '/fileUpload/';
     static API_FILE_DELETE_BY_MD5 = URL_ROOT + '/fileDeleteByMD5/md5';
     static API_FILE_GET = URL_ROOT + '/fileGet/';
-    static API_FILE_DELETE_BY_ID = URL_ROOT + '/fileDelete/id/';
-    static API_GET_VIDEO_INFO=URL_ROOT+'/getVideoInfo/';
 
     static API_FEATURE_LIST = URL_ROOT + '/getFeatureList';
 
     static API_CHECK_FILE_MD5 = URL_ROOT + '/checkFileMD5/'
-    static API_UPLOAD_RECORD = URL_ROOT + '/getUploadRecord/'
     static API_VERIFY_RECORD = URL_ROOT + '/getContentList/'
 
     static API_VIDEO_LIST=URL_ROOT+'/getVideoList'

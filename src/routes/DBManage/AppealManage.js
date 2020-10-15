@@ -1,11 +1,9 @@
 import React from "react";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
-import {Button, Empty, Modal, Transfer, Collapse, Table, Tag, message, Tabs, Spin, Tooltip, Badge} from 'antd';
+import {Button, Empty,  Table, Tag, message, Tabs,  Tooltip, Badge} from 'antd';
 import {Link, withRouter} from "react-router-dom";
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
-import {isAuthenticated} from "../../utils/Session";
-import {formatFileSize} from "../../utils/utils";
 import moment from "moment";
 
 const {TabPane} = Tabs;
@@ -240,6 +238,8 @@ class AppealManage extends React.Component {
             case '3':
                 type = 2
                 break;
+            default:
+                type=0;
         }
         axios({
             url: ApiUtil.URL_IP + '/api/getAppealListAll/' + type,

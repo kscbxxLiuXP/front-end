@@ -11,7 +11,6 @@ import {
     Input,
     message,
     Row,
-    Select,
     Spin,
     Table,
     DatePicker, Typography, Tooltip, Modal, Divider,
@@ -20,13 +19,9 @@ import HttpUtil from "../../utils/HttpUtil";
 import ApiUtil from "../../utils/ApiUtil";
 import Highlighter from "react-highlight-words";
 import moment from "moment";
-import {Link} from "react-router-dom";
-import ReactJson from "react-json-view";
 import axios from "axios";
 
-const {Option} = Select;
-const {Paragraph, Text} = Typography;
-
+const {Text} = Typography;
 const {RangePicker} = DatePicker;
 const key = 'updatable';
 
@@ -65,7 +60,8 @@ class FeatureManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({searchFeatureID: ''});
+                    clearFilters();
+                    this.setState({searchFeatureID: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -102,9 +98,6 @@ class FeatureManageDemo extends React.Component {
                         '今天': [moment(), moment()],
                         '本月': [moment().startOf('month'), moment().endOf('month')],
                     }}
-                    ref={node => {
-                        this.searchRange = node;
-                    }}
                     value={selectedKeys[0]}
 
                     style={{marginBottom: -10, display: 'block'}}
@@ -130,7 +123,8 @@ class FeatureManageDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({
+                    clearFilters();
+                    this.setState({
                         searchSTime: null,
                         searchETime: null
                     });
@@ -183,7 +177,7 @@ class FeatureManageDemo extends React.Component {
                       <Divider type='vertical'/>
                       <Tooltip title={'删除'}>
                     <Button shape='round' size='small' type='danger' onClick={() => {
-                    this.setState({deleteVisible:true,featureid:record.featureid})
+                        this.setState({deleteVisible: true, featureid: record.featureid})
 
                     }} icon={'delete'}/>
                       </Tooltip>
@@ -202,10 +196,10 @@ class FeatureManageDemo extends React.Component {
         searchSTime: null,
         searchETime: null,
         featureVisible: false,
-        deleteVisible:false,
+        deleteVisible: false,
         arg: '',
-        authPassword:'',
-        featureid:0,
+        authPassword: '',
+        featureid: 0,
     }
 
     // 获取用户列表
@@ -235,11 +229,6 @@ class FeatureManageDemo extends React.Component {
         this.getData();
     }
 
-    onSelectChange = selectedRowKeys => {
-        console.log('selectedRowKeys changed: ', selectedRowKeys);
-        this.setState({selectedRowKeys});
-    };
-
     handleTextChange() {
 
     }
@@ -257,14 +246,15 @@ class FeatureManageDemo extends React.Component {
     onClose = () => {
         this.setState({
             visible: false,
-            authPassword:''
+            authPassword: ''
         });
     };
+
     deleteFeature() {
         message.loading({content: '正在删除特征中...', key});
         let data = {
             authPassword: this.state.authPassword,
-            id:this.state.featureid
+            id: this.state.featureid
         }
         axios({
             url: ApiUtil.URL_IP + '/api/deleteFeature',
@@ -284,15 +274,6 @@ class FeatureManageDemo extends React.Component {
 
 
     render() {
-        const {loading, selectedRowKeys} = this.state;
-        const rowSelection = {
-            selectedRowKeys,
-            onChange: this.onSelectChange,
-        };
-        const a = {
-            '1': 111,
-            'aaa': 232
-        }
         // const hasSelected = selectedRowKeys.length > 0;
         return (
             <div>
@@ -374,7 +355,7 @@ class FeatureManageDemo extends React.Component {
                     <div
                         style={{
                             textAlign: 'right',
-                            marginTop:20
+                            marginTop: 20
                         }}
                     >
                         <Button onClick={this.onClose} style={{marginRight: 8}}>
@@ -445,19 +426,4 @@ class FeatureManageDemo extends React.Component {
     }
 }
 
-const styles = {
-    searchItem: {
-        width: 150,
-        marginTop: 4,
-        marginRight: 10,
-    },
-    prefixIcon: {
-        color: 'rgba(0,0,0,.25)',
-    },
-    divider: {
-        marginTop: 4,
-        marginBottom: 8,
-    }
-
-}
 export default FeatureManageDemo

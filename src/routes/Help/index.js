@@ -1,11 +1,10 @@
 import React from "react";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
-import {Button, Col, Divider, Row} from 'antd'
+import { Divider} from 'antd'
 import MyCard from "../../components/MyCard/MyCard";
-import {withRouter, Link} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 import './style.css'
 
-let id = 0
 const helpList = [
     {
         key: 1,
@@ -47,7 +46,7 @@ class Help extends React.Component {
                 <CustomBreadcrumb arr={['帮助']}/>
                 <MyCard style={{height: 600}} title='帮助列表'>
                     <div style={{marginLeft:30,marginTop: "40px"}}>
-                        {helpList.map((item, index) => {
+                        {helpList.map((item) => {
                             return <div key={item.id}>
                                 <a className='title'
                                    href={'/#/home/help/' + item.id}>

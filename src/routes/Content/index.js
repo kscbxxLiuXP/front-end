@@ -79,8 +79,8 @@ class ContentDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(),
-                        this.setState({searchName: ''});
+                    clearFilters();
+                    this.setState({searchName: ''});
                 }} size="small" style={{width: 90}}>
                     重置
                 </Button>
@@ -111,7 +111,6 @@ class ContentDemo extends React.Component {
     getDateFilter = () => ({
         filterDropdown: ({setSelectedKeys, selectedKeys, confirm, clearFilters}) => (
             <div style={{padding: 8}}>
-
                 <RangePicker
                     ranges={{
                         '今天': [moment(), moment()],
@@ -145,7 +144,8 @@ class ContentDemo extends React.Component {
                     搜索
                 </Button>
                 <Button onClick={() => {
-                    clearFilters(), this.setState({
+                    clearFilters();
+                    this.setState({
                         searchSTime: null,
                         searchETime: null
                     });
@@ -241,7 +241,7 @@ class ContentDemo extends React.Component {
                         </Link>
                     <Divider type='vertical'/>
                       <Tooltip title={'删除'}>
-                    <Button shape='round' size='small' type='danger' onClick={()=>{
+                    <Button shape='round' size='small' type='danger' onClick={() => {
                         let _this = this
                         Modal.confirm({
                             title: '您确定要删除这个视频吗？',
@@ -293,10 +293,6 @@ class ContentDemo extends React.Component {
     }
 
     render() {
-        const cardContent = `<ul class="card-ul">
-            <li>在本页面您可以查看您的创作列表以及审核情况</li>
-               <li>点击“查看”进行更详细的查看</li>
-          </ul>`
         return (
             <div>
                 <CustomBreadcrumb arr={['我的创作']}/>
@@ -354,13 +350,5 @@ class ContentDemo extends React.Component {
     }
 }
 
-const styles = {
-    affixBox: {
-        position: 'absolute',
-        top: 100,
-        right: 50,
-        with: 170
-    }
-}
 
 export default ContentDemo

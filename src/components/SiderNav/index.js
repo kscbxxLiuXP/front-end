@@ -1,6 +1,6 @@
 import React from 'react'
 import CustomMenu from "../CustomMenu/index";
-import {Affix, Typography} from "antd";
+import { Typography} from "antd";
 import cookie from "react-cookies";
 
 const {Text} = Typography;
@@ -10,7 +10,7 @@ class SiderNav extends React.Component {
 
     getMenu() {
         let menus
-        if (cookie.load('userId-admined') == 1) {
+        if (cookie.load('userId-admined') === '1') {
             menus = [
                 {
                     title: '首页',

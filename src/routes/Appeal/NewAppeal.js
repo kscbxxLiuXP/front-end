@@ -107,7 +107,7 @@ class NewAppeal extends React.Component {
         }).then(res => {
             let list = res.data.data
             let appealData = []
-            list.map((item, index) => {
+            list.map((item) => {
                 let r = {
                     key: item.key,
                     id: item.video.id,
@@ -126,15 +126,14 @@ class NewAppeal extends React.Component {
     onChange = nextTargetKeys => {
         this.setState({targetKeys: nextTargetKeys});
         let list = this.state.appealData
-        list.map((item2, index) => {
+        list.forEach((item2) => {
             let b = false
-            nextTargetKeys.map((item1, key) => {
+            nextTargetKeys.forEach((item1) => {
                 if (item1 === item2.key) {
                     b = true
                 }
             })
             item2.selected = b;
-            return 1
         })
         this.setState({appealData: list})
 
@@ -143,7 +142,7 @@ class NewAppeal extends React.Component {
     //设置申诉值
     setAppealValue(key, value) {
         let list = this.state.appealData
-        list.map((item, index) => {
+        list.forEach((item) => {
             if (key === item.key) {
                 item.appeal = value
             }
@@ -155,7 +154,7 @@ class NewAppeal extends React.Component {
     getListValue(key) {
         let list = this.state.appealData
         let d = ''
-        list.map((item, index) => {
+        list.map((item) => {
             if (key === item.key) {
                 d = item.appeal
             }
@@ -167,7 +166,7 @@ class NewAppeal extends React.Component {
     checkAppealData() {
         let q = []
         let b = true
-        this.state.appealData.map((item, index) => {
+        this.state.appealData.forEach((item) => {
             if (item.selected === true && item.appeal.trim() === '') {
                 q.push(item.name)
                 b = false
@@ -238,7 +237,7 @@ class NewAppeal extends React.Component {
                                           accordion>
                                     {this.state.targetKeys.map((item, key) => {
                                         return (
-                                            this.state.videoList.map((v, i) => {
+                                            this.state.videoList.map((v) => {
                                                 if (v.key === item) {
 
                                                     return (<Panel header={`申诉-${v.name}`} key={key}
@@ -253,6 +252,7 @@ class NewAppeal extends React.Component {
                                                         </Panel>
                                                     )
                                                 }
+                                                return null
                                             })
                                         )
                                     })}

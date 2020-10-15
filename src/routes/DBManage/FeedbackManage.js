@@ -17,7 +17,7 @@ class FeedbackManage extends React.Component {
     }
 
     getData() {
-        loading:true
+        this.setState({loading:true})
         axios({
             url: ApiUtil.URL_IP + '/api/feedbackList',
             method: 'get'
@@ -99,7 +99,7 @@ class FeedbackManage extends React.Component {
             url: ApiUtil.URL_IP + '/api/feedbackSetReaded/' + id,
             method: 'get'
         }).then(
-            res => {
+            () => {
                 this.getData()
             }
         )

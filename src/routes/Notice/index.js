@@ -6,8 +6,6 @@ import '../../../node_modules/animate.css/animate.css'
 
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
-import draftToHtml from "draftjs-to-html";
-import {convertToRaw} from "draft-js";
 
 const animations = [
     ['bounceInDown', 'bounceInUp'],
@@ -41,7 +39,7 @@ class NoticeDemo extends React.Component {
     }
     animations = getAnimation(animations)
 
-    componentWillUpdate() {
+    componentWillUpdate(nextProps, nextState, nextContext) {
         //当current变化时，也就是state变化时重新给animations赋值，否则animations不会改变.实现类似vue的watch
         //用componentWUpdate还是componentDidUpdate根据具体场景，componentDidUpdate一般是需要用到state时调用（因为setState是异步，需要等更新完成）
         let temp = getAnimation(animations)
@@ -49,7 +47,6 @@ class NoticeDemo extends React.Component {
             temp = getAnimation(animations)
         }
         this.animations = temp
-
     }
 
     componentDidMount() {
@@ -66,11 +63,6 @@ class NoticeDemo extends React.Component {
 
     render() {
         const {current} = this.state
-        const cardContent = `<ul class="card-ul">
-            <li>公告内容</li>
-            <li>公告内容</li>
-            <li>公告内容</li>
-          </ul>`
         return (
             <div>
                 <CustomBreadcrumb arr={['公告']}/>

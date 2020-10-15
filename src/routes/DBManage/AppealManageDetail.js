@@ -1,5 +1,4 @@
 import React from "react";
-import CustomBreadcrumb from "../../components/CustomBreadcrumb";
 import {
     PageHeader,
     Button,
@@ -13,14 +12,12 @@ import {
     Input,
     Affix,
     Badge,
-    Tooltip, Modal, message
+     Modal, message
 } from 'antd';
 import axios from "axios";
 import ApiUtil from "../../utils/ApiUtil";
-import Clock from "react-clock";
 import {isAuthenticated} from "../../utils/Session";
 import VideoCompareCard from "../../components/VideoContentDetail/VideoCompareCard";
-import MyCard from "../../components/MyCard/MyCard";
 import moment from 'moment';
 
 let id
@@ -49,7 +46,7 @@ class AppealManageDetail extends React.Component {
                 copy: res.data.data.copyinfo,
                 appeal: res.data.data.appeal,
                 feedback: res.data.data.appeal.appealFeedback,
-                pass: res.data.data.appeal.appealResult === 1 ? true : false,
+                pass: res.data.data.appeal.appealResult === 1,
                 loading: false,
                 type: res.data.data.appeal.appealResult ===null ? 0 : 1
             })
@@ -114,7 +111,7 @@ class AppealManageDetail extends React.Component {
                         <Descriptions.Item label="视频ID">  {this.state.appeal.videoID}</Descriptions.Item>
                         <Descriptions.Item label="申请 时间">{this.state.appeal.appealTime}</Descriptions.Item>
                         <Descriptions.Item label="申诉处理状态">{this.state.appeal.state === 1 ?
-                            <Badge color="#2db7f5" text="受理中"></Badge> :
+                            <Badge color="#2db7f5" text="受理中"/> :
                             <Badge color="#87d068" text="申诉已完成"/>}</Descriptions.Item>
                         <Descriptions.Item
                             label="申诉处理人"> {this.state.appeal.resolver === null ? '--' : this.state.appeal.resolver} </Descriptions.Item>

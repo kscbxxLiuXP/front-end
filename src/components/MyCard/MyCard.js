@@ -1,10 +1,6 @@
 import React from "react";
 
 class MyCard extends React.Component {
-    constructor(props) {
-        super(props);
-
-    }
     render() {
         let {
             title,

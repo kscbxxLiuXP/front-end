@@ -1,8 +1,7 @@
 import React from "react";
 import CustomBreadcrumb from "../../components/CustomBreadcrumb";
-import {Button, Empty, Modal, Transfer, Collapse, Table, Tag,message, Tabs} from 'antd';
+import {Button, Empty,message, Tabs} from 'antd';
 import {withRouter} from "react-router-dom";
-import {inject} from "mobx-react";
 import AppealList from "./AppealList";
 import axios from 'axios'
 import ApiUtil from "../../utils/ApiUtil";
@@ -39,6 +38,8 @@ class Appeal extends React.Component {
             case '3':
                 type = 2
                 break;
+            default:
+                type=0;
         }
         axios({
             url: ApiUtil.URL_IP + '/api/getAppealList/' + isAuthenticated() + '/' + type,

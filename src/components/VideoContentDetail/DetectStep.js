@@ -17,7 +17,7 @@ class DetectStep extends React.Component {
     }
 
     componentWillReceiveProps(nextProps, nextContext) {
-        nextProps.his.map((item, index) => {
+        nextProps.his.forEach((item) => {
             console.log(item)
             if (item.type === 1) {
                 this.setState({

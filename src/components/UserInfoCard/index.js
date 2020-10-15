@@ -2,7 +2,6 @@ import React from "react"
 import {Avatar, Button, Divider} from "antd";
 import ApiUtil from "../../utils/ApiUtil";
 import axios from "axios";
-import {isAuthenticated} from "../../utils/Session";
 import {withRouter} from "react-router-dom";
 
 @withRouter

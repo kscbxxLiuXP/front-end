@@ -79,14 +79,14 @@ class AvatarUpload extends React.Component {
                             上传中，请稍后
                         </div>
                     </div> : <div>
-                        <img src={`${ApiUtil.URL_IP}/api/tmpPic/${isAuthenticated()}`} width={'100%'}/>
+                        <img src={`${ApiUtil.URL_IP}/api/tmpPic/${isAuthenticated()}`} width={'100%'} alt='avatar'/>
                         <Divider/>
                         <div style={{marginTop: 10}}>
                             <Button onClick={() => {
                                 axios({
                                     url: ApiUtil.URL_IP + '/api/cancelAvatarChange/' + isAuthenticated(),
                                     method: 'get'
-                                }).then(res => {
+                                }).then(() => {
                                     this.setState({
                                         loading: false,
                                         visible: false,
@@ -110,6 +110,7 @@ class AvatarUpload extends React.Component {
                                             title: '头像更改成功！',
                                             icon: <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a"/>,
                                             content: '刷新界面后可看到最新头像，现在刷新吗？',
+                                            centered:true,
                                             okText:'现在刷新',
                                             cancelText:'稍后刷新',
                                             onOk() {
