@@ -47,7 +47,7 @@
 
 <img width = "100" src="https://github.com/kscbxxLiuXP/videodetect-front/blob/master/doc/a5.jpg?raw=true"/>
 
-<center>北风寒</center>
+<center>非鱼</center>
 
 <center>假沈阳本地人，大创组语文课代表</center>
 
