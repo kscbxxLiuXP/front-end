@@ -296,7 +296,7 @@ class ContentDemo extends React.Component {
         return (
             <div>
                 <CustomBreadcrumb arr={['我的创作']}/>
-                <div className="info-card" style={
+                <div  style={
                     {
                         background: "white",
                         borderRadius: "15px",
@@ -323,7 +323,7 @@ class ContentDemo extends React.Component {
                     </div>
                 </div>
 
-                <div className="info-card" style={
+                <div  style={
                     {
                         background: "white",
                         borderRadius: "15px",

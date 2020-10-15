@@ -23,13 +23,13 @@ class UserInfoCard extends React.Component {
     }
 
     render() {
-        return (<div className="info-card" style={
+        return (<div  style={
             {
                 background: "white",
                 borderRadius: "15px",
                 boxShadow: "0px 0px 20px rgba(137, 137, 137, 0.1)",
                 marginBottom: "50px",
-                marginLeft: "30px"
+                width:291
             }}>
             <div style={{
                 textAlign: "center",

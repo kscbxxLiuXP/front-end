@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomBreadcrumb from '../../../components/CustomBreadcrumb/index'
 import cookie from "react-cookies";
-import {Tooltip, Radio, DatePicker, Icon, Input, Form, Row, Col, Button, message, InputNumber} from "antd";
+import {Tooltip, Radio, DatePicker, Icon, Input, Form, Button, message, InputNumber} from "antd";
 import {isAuthenticated} from "../../../utils/Session";
 import UserInfoCard from "../../../components/UserInfoCard";
 import axios from "axios";
@@ -11,6 +11,7 @@ import AvatarUpload from "../../../components/AvatarUpload";
 import MyCard from "../../../components/MyCard/MyCard";
 import Clock from "react-clock";
 import 'react-clock/dist/Clock.css';
+import './style.css'
 
 const formItemLayout = {
     labelCol: {
@@ -35,17 +36,18 @@ const tailFormItemLayout = {
     },
 };
 const key = 'updatable';
+
 @Form.create()
 class PInformationDemo extends React.Component {
     state = {
         user: {},
         time: new Date(),
-        timer:null,
+        timer: null,
     }
 
     componentDidMount() {
         this.setState({
-            timer:setInterval(()=>{
+            timer: setInterval(() => {
                 this.setState({
                     time: new Date(),
                 });
@@ -79,6 +81,7 @@ class PInformationDemo extends React.Component {
         })
 
     }
+
     componentWillUnmount() {
         clearTimeout(this.state.timer)
     }
@@ -113,29 +116,23 @@ class PInformationDemo extends React.Component {
         return (
             <div>
                 <CustomBreadcrumb arr={['个人中心', '个人资料']}/>
-                <Row gutter={30}>
-                    <Col span={6}>
+                <div className='outer'>
+                    <div className={'sider'}>
                         <UserInfoCard name={isAuthenticated()}/>
-                        <MyCard style={{marginLeft: 30, marginTop: -30, height: 210, alignContent: 'center',
+                        <MyCard style={{
+                            marginTop: -30, width: 291, height: 210, alignContent: 'center',
                             alignItems: 'center',
                             boxSizing: 'border-box',
                             display: 'flex',
                             flexDirection: 'row',
                             flexWrap: 'nowrap',
-                            justifyContent: 'center',}}>
-                            <Clock renderNumbers={true} value={this.state.time} />
+                            justifyContent: 'center',
+                        }}>
+                            <Clock renderNumbers={true} value={this.state.time}/>
                         </MyCard>
-                    </Col>
-                    <Col span={18}>
-                        <div className="info-card" style={
-                            {
-                                background: "white",
-                                borderRadius: "15px",
-                                boxShadow: "0px 0px 20px rgba(137,137,137, 0.1)",
-                                marginTop: "20px",
-                                marginBottom: "50px",
-                                padding: "20px"
-                            }}>
+                    </div>
+                    <div className={'content'}>
+                        <MyCard style={{marginTop: 20}}>
                             <div style={{marginLeft: "30px"}}>
                                 <div style={{fontWeight: "bold", marginBottom: "20px", fontSize: "18px"}}>个人资料</div>
                                 <Form {...formItemLayout} onSubmit={this.handleSubmit}>
@@ -241,9 +238,10 @@ class PInformationDemo extends React.Component {
                                 </Form>
                             </div>
 
-                        </div>
-                    </Col>
-                </Row>
+                        </MyCard>
+                    </div>
+                </div>
+
 
             </div>
         )

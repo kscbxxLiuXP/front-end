@@ -8,7 +8,7 @@ const {Text} = Typography;
 class VideoInfoCard extends React.Component {
     render() {
         return (
-            <div className='video-info-card' style={
+            <div  style={
                 {
                     background: "white",
                     borderRadius: "15px",

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Icon, Upload, message, BackTop, Spin, Row, Col, Badge, Tag} from 'antd'
+import {Icon, Upload, message, BackTop, Spin, Badge, Tag} from 'antd'
 import CustomBreadcrumb from '../../components/CustomBreadcrumb'
 
 import {isAuthenticated} from "../../utils/Session";
@@ -9,6 +9,7 @@ import HttpUtil from "../../utils/HttpUtil";
 
 import {getfilemd5sum} from "../../utils/utils";
 import UserInfoCard from "../../components/UserInfoCard";
+import './style.css'
 
 const Dragger = Upload.Dragger;
 
@@ -138,12 +139,12 @@ class UploadDemo extends React.Component {
         return (
             <div>
                 <CustomBreadcrumb arr={['上传中心']}/>
-                <Row gutter={30}>
-                    <Col span={6}>
+                <div className={'outer'}>
+                    <div className={'sider'}>
                         <UserInfoCard name={isAuthenticated()}/>
-                    </Col>
-                    <Col span={18}>
-                        <div className="info-card" style={
+                    </div>
+                    <div className={'content'}>
+                        <div style={
                             {
                                 background: "white",
                                 borderRadius: "15px",
@@ -179,7 +180,7 @@ class UploadDemo extends React.Component {
                         </div>
 
                         <Spin tip='验证中。。。。' spinning={this.state.visible}>
-                            <div className="info-card" style={
+                            <div style={
                                 {
                                     background: "white",
                                     borderRadius: "15px",
@@ -187,7 +188,7 @@ class UploadDemo extends React.Component {
                                     marginTop: "20px",
                                     marginBottom: "50px",
                                     padding: "20px",
-                                    height:'330px'
+                                    height: '330px'
                                 }}>
                                 <div style={{
                                     fontWeight: "bold",
@@ -196,7 +197,7 @@ class UploadDemo extends React.Component {
                                     fontSize: "18px"
                                 }}>上传
                                 </div>
-                                <div  style={{height:230}}>
+                                <div style={{height: 230}}>
                                     <Dragger action={ApiUtil.API_FILE_UPLOAD + isAuthenticated()}
                                              beforeUpload={this.beforeUpload.bind(this)} {...props2}>
                                         <p className="ant-upload-drag-icon">
@@ -209,8 +210,9 @@ class UploadDemo extends React.Component {
 
                             </div>
                         </Spin>
-                    </Col>
-                </Row>
+                    </div>
+                </div>
+
 
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
             </div>

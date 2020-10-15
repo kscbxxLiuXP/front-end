@@ -1,12 +1,13 @@
 import React from 'react'
 import CustomBreadcrumb from "../../../components/CustomBreadcrumb/index";
 import cookie from "react-cookies";
-import {Button, Col, Form, Input, message, Row,} from "antd";
+import {Button, Form, Input, message,} from "antd";
 import UserInfoCard from "../../../components/UserInfoCard";
 import {isAuthenticated} from "../../../utils/Session";
 import axios from 'axios'
 import ApiUtil from "../../../utils/ApiUtil";
 import md5 from 'md5'
+import './style.css'
 
 const formItemLayout = {
     labelCol: {
@@ -83,12 +84,12 @@ class AccountDemo extends React.Component {
         return (
             <div>
                 <CustomBreadcrumb arr={['个人中心', '账号相关']}/>
-                <Row gutter={30}>
-                    <Col span={6}>
+                <div className={'outer'}>
+                    <div className={'sider'}>
                         <UserInfoCard name={isAuthenticated()}/>
-                    </Col>
-                    <Col span={18}>
-                        <div className="info-card" style={
+                    </div>
+                    <div className={'content'}>
+                        <div style={
                             {
                                 background: "white",
                                 borderRadius: "15px",
@@ -146,11 +147,9 @@ class AccountDemo extends React.Component {
                                     </Form.Item>
                                 </Form>
                             </div>
-
                         </div>
-                    </Col>
-                </Row>
-
+                    </div>
+                </div>
             </div>
         )
     }

@@ -75,7 +75,7 @@ class FeedBackDemo extends React.Component {
                             </Button>
                         ]}
                     />
-                </MyCard> : <div className="info-card" style={
+                </MyCard> : <div  style={
                     {
                         background: "white",
                         borderRadius: "15px",

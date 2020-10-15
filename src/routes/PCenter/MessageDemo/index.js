@@ -172,7 +172,7 @@ class MessageDemo extends React.Component {
         ).then(res => {
             if (res.data.code === 1) {
                 message.error(res.data.msg)
-            }else if(res.data.code===0){
+            } else if (res.data.code === 0) {
 
                 this.getData()
             }
@@ -302,7 +302,7 @@ class MessageDemo extends React.Component {
             <div>
                 <CustomBreadcrumb arr={['个人中心', '消息中心']}/>
 
-                <div className="info-card" style={
+                <div style={
                     {
                         background: "white",
                         borderRadius: "15px",
@@ -313,7 +313,7 @@ class MessageDemo extends React.Component {
                     }}>
                     <Tabs defaultActiveKey="1" onTabClick={() => {
                         this.getData()
-                    }} tabBarExtraContent={<Button icon='reload' onClick={()=>this.getData()}>刷新</Button>}>
+                    }} tabBarExtraContent={<Button icon='reload' onClick={() => this.getData()}>刷新</Button>}>
                         <TabPane tab="收件箱" key="1">
                             <Table columns={columns}
                                    dataSource={this.state.msgData} size='middle'/>

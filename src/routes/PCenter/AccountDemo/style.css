@@ -1,0 +1,19 @@
+.outer {
+    overflow: hidden;
+
+}
+
+.sider {
+    padding-left: 10px;
+    float: left;
+    width: 330px;
+
+
+}
+
+.content {
+    float: left;
+    width: calc(100% - 330px);
+
+
+}
