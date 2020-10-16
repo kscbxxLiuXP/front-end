@@ -45,6 +45,11 @@ export default class About extends React.Component {
                         <span style={{float: "left", marginLeft: -50, fontSize: 30, fontStyle: "oblique"}}>5.</span>
                         <MyFilpCard name={'非鱼'} src={require('../../assets/img/a5.jpg')} des={'假沈阳本地人，大创组语文课代表'}/>
                     </div>
+
+                    <div style={{textAlign: "center", marginTop: 30, marginBottom: 50}}>
+                        <img width={300} src={require('../../assets/img/qr.jpg')} alt=""/>
+                    </div>
+
                 </div>
                 <BackTop visibilityHeight={200} style={{right: 50}}/>
 

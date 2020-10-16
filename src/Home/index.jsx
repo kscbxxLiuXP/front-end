@@ -6,17 +6,16 @@ import {enquireScreen} from 'enquire-js';
 import Nav3 from './Nav3';
 import Banner1 from './Banner1';
 import Content0 from './Content0';
-import Content1 from './Content1';
-import Content3 from './Content3';
 import Footer0 from './Footer0';
-
+import Content13 from "./Content13";
+import Feature8 from "./Feature8";
 import {
     Nav30DataSource,
     Banner10DataSource,
     Content00DataSource,
-    Content10DataSource,
-    Content30DataSource,
     Footer00DataSource,
+    Content130DataSource,
+    Feature80DataSource
 } from './data.source';
 import './css/antMotionStyle.css';
 
@@ -61,6 +60,7 @@ export default class Home extends React.Component {
                 key="Nav3_0"
                 dataSource={Nav30DataSource}
                 isMobile={this.state.isMobile}
+                selectedKeys={['item0']}
             />,
             <Banner1
                 id="Banner1_0"
@@ -68,22 +68,23 @@ export default class Home extends React.Component {
                 dataSource={Banner10DataSource}
                 isMobile={this.state.isMobile}
             />,
+
+            <Content13
+                id="Content13_0"
+                key="Content13_0"
+                dataSource={Content130DataSource}
+                isMobile={this.state.isMobile}
+            />,
+            <Feature8
+                id="Feature8_0"
+                key="Feature8_0"
+                dataSource={Feature80DataSource}
+                isMobile={this.state.isMobile}
+            />,
             <Content0
                 id="Content0_0"
                 key="Content0_0"
                 dataSource={Content00DataSource}
-                isMobile={this.state.isMobile}
-            />,
-            <Content1
-                id="Content1_0"
-                key="Content1_0"
-                dataSource={Content10DataSource}
-                isMobile={this.state.isMobile}
-            />,
-            <Content3
-                id="Content3_0"
-                key="Content3_0"
-                dataSource={Content30DataSource}
                 isMobile={this.state.isMobile}
             />,
             <Footer0
@@ -96,9 +97,6 @@ export default class Home extends React.Component {
         return (
             <div
                 className="templates-wrapper"
-                ref={(d) => {
-                    this.dom = d;
-                }}
             >
                 {/* 如果不是 dva 2.0 替换成 {children} start */}
                 {this.state.show && children}

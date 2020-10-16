@@ -151,6 +151,7 @@ class Register extends React.Component {
                 <Nav3
                     id="Nav3_0"
                     key="Nav3_0"
+                    selectedKeys={['item3']}
                     dataSource={Nav30DataSource}
                     isMobile={this.state.isMobile}
                 />

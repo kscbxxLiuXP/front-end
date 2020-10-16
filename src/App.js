@@ -8,6 +8,7 @@ import './assets/font/iconfont.css'
 import Home from './Home';
 import Login from "./routes/Login"
 import Register from "./routes/Register";
+import ContactUS from "./routes/ContactUS";
 
 class App extends Component {
     render() {
@@ -18,6 +19,7 @@ class App extends Component {
 
                     <Route path='/login' component={Login}/>
                     <Route path='/register' component={Register}/>
+                    <Route path='/contactus' component={ContactUS}/>
                     <PrivateRoute path='/' component={Index}/>
                 </Switch>
             </div>
