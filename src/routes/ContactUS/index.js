@@ -58,6 +58,9 @@ class ContactUS extends React.Component {
                             <div style={{fontSize: 20, marginTop: -20, marginBottom: 30, width: '100%', textAlign: "center"}}>
                                 关于我们
                             </div>
+                            <div style={{fontSize: 16, marginTop: -20, marginBottom: 30, width: '100%', textAlign: "center"}}>
+                                (鼠标停留可查看背面)
+                            </div>
                             <div>
                                 <span style={{float: "left", marginLeft: -50, fontSize: 30, fontStyle: "oblique"}}>1.</span>
                                 <MyFilpCard name={'半透明的墙'} src={require('../../assets/img/a1.jpg')} des={'没有感情的代码机器'}/>

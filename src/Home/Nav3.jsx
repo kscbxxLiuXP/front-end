@@ -20,29 +20,6 @@ class Header3 extends React.Component {
         });
     };
 
-    // componentDidMount() {
-    //     // 防止页面刷新侧边栏又初始化了
-    //     const pathname = this.props.location.pathname
-    //     if (pathname === '/index') {
-    //         this.setState({
-    //             selectedKeys: ['item0']
-    //         })
-    //     } else if (pathname === '/contactus') {
-    //         this.setState({
-    //             selectedKeys: ['item1']
-    //         })
-    //     } else if (pathname === '/login') {
-    //         this.setState({
-    //             selectedKeys: ['item2']
-    //         })
-    //     } else if (pathname === '/register') {
-    //         this.setState({
-    //             selectedKeys: ['item3']
-    //         })
-    //     }
-    //
-    //
-    // }
 
     render() {
         const {dataSource, isMobile,selectedKeys, ...props} = this.props;

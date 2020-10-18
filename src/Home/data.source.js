@@ -163,14 +163,14 @@ export const Content00DataSource = {
                             name: 'image',
                             className: 'content0-block-icon',
                             children:
-                                'https://zos.alipayobjects.com/rmsportal/WBnVOjtIlGWbzyQivuyq.png',
+                                require('../assets/img/高效.png'),
                         },
                         {
                             name: 'title',
                             className: 'content0-block-title',
-                            children: '一站式业务接入',
+                            children: '高效视频检索',
                         },
-                        {name: 'content', children: '支付、结算、核算接入产品效率翻四倍'},
+                        {name: 'content', children: '基于深度学习的特征提取与检索'},
                     ],
                 },
             },
@@ -186,16 +186,16 @@ export const Content00DataSource = {
                             name: 'image',
                             className: 'content0-block-icon',
                             children:
-                                'https://zos.alipayobjects.com/rmsportal/YPMsLQuCEXtuEkmXTTdk.png',
+                                require('../assets/img/一体化.png'),
                         },
                         {
                             name: 'title',
                             className: 'content0-block-title',
-                            children: '一站式事中风险监控',
+                            children: '一体化检测系统',
                         },
                         {
                             name: 'content',
-                            children: '在所有需求配置环节事前风险控制和质量控制能力',
+                            children: '从上传到检测，再到版权库管理，一条龙服务。',
                         },
                     ],
                 },
@@ -212,16 +212,16 @@ export const Content00DataSource = {
                             name: 'image',
                             className: 'content0-block-icon',
                             children:
-                                'https://zos.alipayobjects.com/rmsportal/EkXWVvAaFJKCzhMmQYiX.png',
+                                require('../assets/img/可视化.png'),
                         },
                         {
                             name: 'title',
                             className: 'content0-block-title',
-                            children: '一站式数据运营',
+                            children: '可视化数据管理',
                         },
                         {
                             name: 'content',
-                            children: '沉淀产品接入效率和运营小二工作效率数据',
+                            children: '提供用户友好的可视化管理界面。',
                         },
                     ],
                 },
@@ -271,7 +271,7 @@ export const Feature80DataSource = {
                     gutter: 120,
                     title: {
                         className: 'feature8-carousel-title-block',
-                        children: '用户使用流畅',
+                        children: '用户使用流程',
                     },
                     children: [
                         {
@@ -291,17 +291,17 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/视频上传.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '上传视频',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
-                                        children: '沟通业务需求，对接人：诚凡、芸彩',
+                                        children: '用户通过视频上传接口，将创作的视频上传至系统。',
                                     },
                                 ],
                             },
@@ -323,18 +323,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/检测.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '系统检测',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '用户上传视频后，系统会将上传视频添加至检测队列，后台进行版权检测。这个过程持续不会超过24h。',
                                     },
                                 ],
                             },
@@ -356,18 +356,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/检测完成.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '检测完成',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '后台对视频版权检测完成后，将会发送站内信给用户，用户可以在创作页面查看检测的结果。',
                                     },
                                 ],
                             },
@@ -389,18 +389,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/申诉.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '申诉服务',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '用户对于检测结果如有异议，我们提供申诉服务，将人工处理本次检测，预计申诉周期为2-4个工作日',
                                     },
                                 ],
                             },
@@ -433,17 +433,17 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/关键帧.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '关键帧提取',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
-                                        children: '沟通业务需求，对接人：诚凡、芸彩',
+                                        children: '提取上传视频的关键帧，并保存对应的时间序列。',
                                     },
                                 ],
                             },
@@ -465,18 +465,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/特征提取.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '特征提取',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '采用深度学习网络对图像进行特征提取',
                                     },
                                 ],
                             },
@@ -498,18 +498,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/相似视频检索.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '视频检索',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '将提取的特征与版权库中的视频进行匹配检索。',
                                     },
                                 ],
                             },
@@ -531,18 +531,18 @@ export const Feature80DataSource = {
                                         name: 'image',
                                         className: 'feature8-block-image',
                                         children:
-                                            'https://gw.alipayobjects.com/zos/basement_prod/d8933673-1463-438a-ac43-1a8f193ebf34.svg',
+                                            require('../assets/img/入库.png'),
                                     },
                                     {
                                         name: 'title',
                                         className: 'feature8-block-title',
-                                        children: '需求沟通',
+                                        children: '入库',
                                     },
                                     {
                                         name: 'content',
                                         className: 'feature8-block-content',
                                         children:
-                                            '沟通业务需求，对接人：诚凡、芸彩沟通业务需求，对接人：诚凡、芸彩',
+                                            '对于通过检索的视频，将其加入视频版权库中，不通过的视频另外单独存储。',
                                     },
                                 ],
                             },

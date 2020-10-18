@@ -499,7 +499,7 @@ class Home extends React.Component {
                     <div style={{color: "gray", marginTop: 10, textAlign: "right"}}>
                         {this.state.cNotice.time}
                     </div>
-                    <div style={{minHeight: 400, marginTop: 20, fontSize: 14}}
+                    <div style={{minHeight: 200, marginTop: 20, fontSize: 14}}
 
                          dangerouslySetInnerHTML={{__html: this.state.cNotice.content}}/>
                 </Modal>
