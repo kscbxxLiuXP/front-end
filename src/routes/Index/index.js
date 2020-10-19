@@ -1,11 +1,11 @@
 import React from 'react'
-import {Affix, Layout} from 'antd'
+import { Layout} from 'antd'
 import SiderNav from '../../components/SiderNav'
 import ContentMain from '../../components/ContentMain'
 import HeaderBar from '../../components/HeaderBar'
 import {Typography} from "antd";
 
-const {Sider, Header, Content, Footer} = Layout
+const { Header, Footer, Sider, Content } = Layout;
 const {Text} = Typography
 
 class Index extends React.Component {
@@ -32,13 +32,10 @@ class Index extends React.Component {
                     >
                         <SiderNav collapsed={this.state.collapsed}/>
                     </Sider>
-
                     <Layout>
-                        <Affix>
                         <Header style={{background: '#fff', padding: '0 16px'}}>
                             <HeaderBar collapsed={this.state.collapsed} onToggle={this.toggle}/>
                         </Header>
-                        </Affix>
                         <Content>
                             <ContentMain/>
                         </Content>
@@ -50,8 +47,6 @@ class Index extends React.Component {
                             </div>
                         </Footer>
                     </Layout>
-
-
                 </Layout>
             </div>
         );
