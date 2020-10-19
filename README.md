@@ -8,6 +8,40 @@
 
 后端项目链接：[后端项目](https://github.com/kscbxxLiuXP/videodetect-back)
 
+### 如何运行
+
+#### (一).前端运行+后端运行
+
+用`pycharm`运行后端项目，用`webstorm`运行前端项目
+
+#### (二).前端build后，导入后端static
+
+##### 1.删除原先build文件下的所有文件
+
+##### 2、build
+
+在前端项目的文件目录下运行
+
+```javascript
+npm run build
+```
+
+##### 2、将前端文件夹下的整个build文件夹(含build)移动到后端项目的`/app/static/`目录下
+
+最后目录形式：
+
+|website
+
+|-app
+
+​	|-static
+
+​		|-build
+
+之后再将build文件夹下的`index.html`移动到`templates`下
+
+##### 4、输入127.0.0.1:5000即可运行
+
 ### 关于我们
 
 软英最强阵容，不接受反驳：
